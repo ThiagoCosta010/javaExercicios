@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main class="tela-principal">
@@ -29,10 +30,57 @@
                 >
             </div>
             <div class="form-group">
-                <input type="radio" name="" id="">
+                <input type="radio" 
+                name="moedaEstrangeira" 
+                id="dolar"
+                class="input radio"
+                value="Dólar"
+                tabindex="2"
+                > <label for="dolar">Dólar</label>
+
+                <input type="radio" 
+                name="moedaEstrangeira" 
+                id="euro"
+                class="input radio"
+                value="Euro"
+                tabindex="3"
+                > <label for="euro">Euro</label>
+
+                <input type="radio" 
+                name="moedaEstrangeira" 
+                id="libra"
+                class="input radio"
+                value="Libra"
+                tabindex="4"
+                > <label for="libra">Libra</label>
+
+                <input type="radio" 
+                name="moedaEstrangeira" 
+                id="bitocins"
+                class="input radio"
+                value="Bitcoins"
+                tabindex="5"
+                > <label for="bitcoins">Bitcoins</label>
+            </div>
+            <div class="form-group">
+                <button class="desativado botao" id="btnConverter"
+                onclick="ativarBotao(); bloquearBotao()" disabled>Converter</button>
+                <button type="reset" class="botao" id="btnLimpar" tabindex="7">Limpar</button>
             </div>
         </section>
+        <div class="instrucoes">
+            <p class="centro" id="aviso">Digite o valor, escolha a moeda e converter</p>
+        </div>
+        <br>
+        <div class="instrucoes" style="background:#222; border:0">
+            <figure id="imgMoedas" class="centro">
+                <img class="animar" src="img/real.png" alt="Real" width="100px">
+                <img class="animar" src="img/dolar.png" alt="Moeda Estrangeira" width="100px">
+            </figure>
+        </div>
     </main>
+
+    <script src="script.js"></script>
     
 </body>
 </html>
