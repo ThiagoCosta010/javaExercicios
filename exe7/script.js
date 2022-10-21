@@ -6,3 +6,7 @@ let placar = 0
 
 let numQuestao = document.querySelector('#numQuestao')
 let pergunta   = document.querySelector('#pergunta')
+
+let a = document.querySelector('#a')
+let b = document.querySelector('#b')
+let c = document.querySelector('#c')
