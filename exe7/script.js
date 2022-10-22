@@ -67,7 +67,7 @@ const q5 = {
     correta      : "América",
 }
 
-const questoes = [q0, q1, q2, q3, q4, q5]
+const questoes = [q0,q1,q2,q3,q4,q5]
 
 let numero = document.querySelector('#numero')
 let total = document.querySelector('#total')
@@ -83,9 +83,9 @@ a.textContent = q1.alternativaA
 b.textContent = q1.alternativaB
 c.textContent = q1.alternativaC
 
-a.setAttribute('value', '1A')
-b.setAttribute('value', '1B')
-c.setAttribute('value', '1C')
+a.setAttribute('value','1A')
+b.setAttribute('value','1B')
+c.setAttribute('value','1C')
 
 function proximaQuestao(nQuestao){
     numero.textContent = nQuestao
@@ -94,21 +94,22 @@ function proximaQuestao(nQuestao){
     a.textContent = questoes[nQuestao].alternativaA
     b.textContent = questoes[nQuestao].alternativaB
     c.textContent = questoes[nQuestao].alternativaC
-    a.setAttribute('value',nQuestao+'A')
-    b.setAttribute('value',nQuestao+'B')
-    c.setAttribute('value',nQuestao+'C')
+    a.setAttribute('value', nQuestao+'A')
+    b.setAttribute('value', nQuestao+'B')
+    c.setAttribute('value', nQuestao+'C')
 }
 function bloquearAlternativas(){
     a.classList.add('bloqueado')
     b.classList.add('bloqueado')
     c.classList.add('bloqueado')
+
 }
 function desbloquearAlternativas(){
     a.classList.remove('bloqueado')
     b.classList.remove('bloqueado')
     c.classList.remove('bloqueado')
 }
-function verificarSeAcertou(nQuestao,resposta){
+function verificarSeAcertou(nQuestao, resposta){
     let numeroDaQuestao = nQuestao.value
     let respostaEscolhida = resposta.textContent
     let certa = questoes[numeroDaQuestao].correta
@@ -117,7 +118,6 @@ function verificarSeAcertou(nQuestao,resposta){
     }
     placar = pontos
     instrucoes.textContent = 'Pontos '+placar
-
     bloquearAlternativas()
     setTimeout(function(){
         proxima = numeroDaQuestao + 1
@@ -126,31 +126,30 @@ function verificarSeAcertou(nQuestao,resposta){
         }else{
             proximaQuestao(proxima)
         }
-    }, 250)
+
+    },250)
     desbloquearAlternativas()
 }
 function fimDoJogo(){
-    instrucoes.textContent = 'Fim Do jogo'
+    instrucoes.textContent = 'Fim do jogo!'
     numQuestao.textContent = ''
-
     let pont = ''
-    pontos == 0 ? pont = 'ponto' : pont = 'pontos'
+    pont == 0 ? pont = 'ponto' : pont = 'pontos'
 
-    pergunta.textContent = 'Você conseguiu ' +pontos+ ' '+pont
-    aviso.textContent = 'Você conseguiu ' +pontos+ ' '+pont
+    pergunta.textContent = 'Você conseguiu '+pontos+ ' '+pont
+    aviso.textContent = 'Você conseguiu '+pontos+ ' '+pont
 
     a.textContent = ''
     b.textContent = ''
     c.textContent = ''
 
-    a.setAttribute('value', '')
-    b.setAttribute('value', '')
-    c.setAttribute('value', '')
-
+    a.setAttribute('value','')
+    b.setAttribute('value','')
+    c.setAttribute('value','')
+ 
     articleQuestoes.style.display = 'none'
-
     setTimeout(function(){
         pontos = 0
         location.reload()
-    }, 2000)
+    },2000)
 }
