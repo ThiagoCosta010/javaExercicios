@@ -69,12 +69,12 @@ const q5 = {
 
 const questoes = [q0,q1,q2,q3,q4,q5]
 
-let numero = document.querySelector('#numero')
 let total = document.querySelector('#total')
+let numero = document.querySelector('#numero')
 
 numero.textContent = q1.numQuestao
 
-let totalDeQuestoes = (questoes.length) -1
+let totalDeQuestoes =  (questoes.length) - 1
 total.textContent = totalDeQuestoes
 
 numQuestao.textContent = q1.numQuestao
@@ -82,7 +82,6 @@ pergunta.textContent = q1.pergunta
 a.textContent = q1.alternativaA
 b.textContent = q1.alternativaB
 c.textContent = q1.alternativaC
-
 a.setAttribute('value','1A')
 b.setAttribute('value','1B')
 c.setAttribute('value','1C')
@@ -94,15 +93,15 @@ function proximaQuestao(nQuestao){
     a.textContent = questoes[nQuestao].alternativaA
     b.textContent = questoes[nQuestao].alternativaB
     c.textContent = questoes[nQuestao].alternativaC
-    a.setAttribute('value', nQuestao+'A')
-    b.setAttribute('value', nQuestao+'B')
-    c.setAttribute('value', nQuestao+'C')
+    a.setAttribute('value',+nQuestao+'A')
+    b.setAttribute('value',+nQuestao+'B')
+    c.setAttribute('value',+nQuestao+'C')
 }
+
 function bloquearAlternativas(){
     a.classList.add('bloqueado')
     b.classList.add('bloqueado')
     c.classList.add('bloqueado')
-
 }
 function desbloquearAlternativas(){
     a.classList.remove('bloqueado')
@@ -126,9 +125,7 @@ function verificarSeAcertou(nQuestao, resposta){
         }else{
             proximaQuestao(proxima)
         }
-
     },250)
-    desbloquearAlternativas()
 }
 function fimDoJogo(){
     instrucoes.textContent = 'Fim do jogo!'
@@ -136,17 +133,17 @@ function fimDoJogo(){
     let pont = ''
     pont == 0 ? pont = 'ponto' : pont = 'pontos'
 
-    pergunta.textContent = 'Você conseguiu '+pontos+ ' '+pont
-    aviso.textContent = 'Você conseguiu '+pontos+ ' '+pont
+    pergunta.textContent = 'Você conseguiu '+pontos+' '+pont
+    aviso.textContent = 'Você conseguiu '+pontos+' '+pont
 
     a.textContent = ''
     b.textContent = ''
     c.textContent = ''
 
-    a.setAttribute('value','')
-    b.setAttribute('value','')
-    c.setAttribute('value','')
- 
+    a.setAttribute('value', '')
+    b.setAttribute('value', '')
+    c.setAttribute('value', '')
+    
     articleQuestoes.style.display = 'none'
     setTimeout(function(){
         pontos = 0
