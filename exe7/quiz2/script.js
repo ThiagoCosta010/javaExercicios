@@ -127,7 +127,7 @@ let total = document.querySelector('#total')
 
 numero.textContent = q1.numQuestao
 
-let totalDeQuestoes = (questoes.length) -1
+let totalDeQuestoes = (questoes.length) - 1
 total.textContent = totalDeQuestoes
 
 numQuestao.textContent = q1.numQuestao
@@ -136,11 +136,10 @@ a.textContent = q1.alternativaA
 b.textContent = q1.alternativaB
 c.textContent = q1.alternativaC
 d.textContent = q1.alternativaD
-
-a.setAttribute('value', '1A')
-b.setAttribute('value',' 1B')
-c.setAttribute('value',' 1C')
-d.setAttribute('value',' 1D')
+a.setAttribute('value','1A')
+b.setAttribute('value','1B')
+c.setAttribute('value','1C')
+d.setAttribute('value','1D')
 
 function proximaQuestao(nQuestao){
     numero.textContent = nQuestao
@@ -156,9 +155,9 @@ function proximaQuestao(nQuestao){
     d.setAttribute('value', nQuestao+'D')
     progresso.value = parseInt(progresso.value) + 1
 }
-alternativas.addEventListener('dblclick',() => {
-    pontos -= 10 // tirar 10 pontos em caso de duplo click
-    if(numQuestao.value == 10 && pontos == 110) { pontos == 100} 
+alternativas.addEventListener('dblclick',   ()=>{
+    pontos -= 10
+    if(numQuestao.value == 10 && pontos == 110 ){pontos == 100}
 })
 function bloquearAlternativas(){
     alternativas.classList.add('bloqueado')
@@ -166,44 +165,41 @@ function bloquearAlternativas(){
 function desbloquearAlternativas(){
     alternativas.classList.remove('bloqueado')
 }
-function piscarNoAcerto(){
-    articleQuestoes.classList.remove('errou')
-    articleQuestoes.classList.add('acertou')
+function piscarAcerto(){
+    alternativas.classList.remove('errou')
+    alternativas.classList.add('acertou')
 }
-function piscarNoErro(){
-    articleQuestoes.classList.remove('acertou')
-    articleQuestoes.classList.add('errou')
+function piscarErrou(){
+    alternativas.classList.remove('acertou')
+    alternativas.classList.add('errou')
 }
-function tirarPiscar(){
-    articleQuestoes.classList.remove('acertou')
-    articleQuestoes.classList.remove('errou')
+function tirarPiscada(){
+    alternativas.classList.remove('errou')
+    alternativas.classList.remove('acertou')   
 }
 function verificarSeAcertou(nQuestao, resposta){
     let numeroDaQuestao = nQuestao.value
     let respostaEscolhida = resposta.textContent
     let certa = questoes[numeroDaQuestao].correta
-
-    if(respostaEscolhida == certa){
-        piscarNoAcerto()
+    if(certa == respostaEscolhida){
         somAcerto.play()
+        piscarAcerto()
         pontos += 10
-        if(nQuestao.value == 1 && pontos == 20 ) {pontos = 10}
+        if(numQuestao.value == 1 && pontos == 20) {pontos = 10}
     }else{
-        piscarNoErro()
         somErro.play()
+        piscarErrou()
     }
-    setTimeout(() => {
-        tirarPiscar()
-    },150)
+    setTimeout( () => {
+        tirarPiscada()
+    }, 150)
     placar = pontos
     instrucoes.textContent = 'Pontos '+placar
-
     bloquearAlternativas()
-
-    setTimeout(function() {
-        proxima = numeroDaQuestao+1
-        if(proxima > totalDeQuestoes){
-            fimDoJogo()
+    setTimeout(() => {
+        proxima = numeroDaQuestao + 1
+        if(proxima > totalDeQuestoes){  
+            fimDoJogo()     
         }else{
             proximaQuestao(proxima)
         }
@@ -212,20 +208,18 @@ function verificarSeAcertou(nQuestao, resposta){
 }
 function fimDoJogo(){
     somAplausos.play()
-
     let s = 's'
     pontos == 0 ? s = '' : s = s
-    instrucoes.textContent = 'Fim do jogo! Você conseguiu ' +pontos+ ' ponto'+s
+
+    instrucoes.textContent = 'Você conseguiu '+pontos+ ' ponto'+s
 
     instrucoes.classList.add('placar')
 
     articleQuestoes.style.display = 'none'
-
-    setTimeout(function() {
-        pontos = 0  
-        instrucoes.classList.remove('placar')
+    setTimeout(() => {
         articleQuestoes.style.display = 'block'
+        pontos = 0
+        instrucoes.textContent = 'Leia a questão e clique na reposta correta'
         proximaQuestao(1)
-        instrucoes.textContent = 'Leia a questão e clique na resposta correta'
-    }, 8000)
+    },8000)
 }
