@@ -74,7 +74,7 @@ let numero = document.querySelector('#numero')
 
 numero.textContent = q1.numQuestao
 
-let totalDeQuestoes =  (questoes.length) - 1
+let totalDeQuestoes = (questoes.length) - 1
 total.textContent = totalDeQuestoes
 
 numQuestao.textContent = q1.numQuestao
@@ -93,11 +93,10 @@ function proximaQuestao(nQuestao){
     a.textContent = questoes[nQuestao].alternativaA
     b.textContent = questoes[nQuestao].alternativaB
     c.textContent = questoes[nQuestao].alternativaC
-    a.setAttribute('value',+nQuestao+'A')
-    b.setAttribute('value',+nQuestao+'B')
-    c.setAttribute('value',+nQuestao+'C')
+    a.setAttribute('value', nQuestao+'A')
+    b.setAttribute('value', nQuestao+'B')
+    c.setAttribute('value', nQuestao+'C')
 }
-
 function bloquearAlternativas(){
     a.classList.add('bloqueado')
     b.classList.add('bloqueado')
@@ -112,41 +111,42 @@ function verificarSeAcertou(nQuestao, resposta){
     let numeroDaQuestao = nQuestao.value
     let respostaEscolhida = resposta.textContent
     let certa = questoes[numeroDaQuestao].correta
-    if(certa == respostaEscolhida){
+    if(respostaEscolhida == certa){
         pontos += 10
     }
     placar = pontos
     instrucoes.textContent = 'Pontos '+placar
     bloquearAlternativas()
-    setTimeout(function(){
+    setTimeout(function() {
         proxima = numeroDaQuestao + 1
         if(proxima > totalDeQuestoes){
             fimDoJogo()
         }else{
             proximaQuestao(proxima)
         }
-    },250)
+        desbloquearAlternativas()
+    },150)
 }
 function fimDoJogo(){
-    instrucoes.textContent = 'Fim do jogo!'
+    instrucoes.textContent = 'Fim do jogo'
     numQuestao.textContent = ''
-    let pont = ''
-    pont == 0 ? pont = 'ponto' : pont = 'pontos'
 
-    pergunta.textContent = 'Você conseguiu '+pontos+' '+pont
-    aviso.textContent = 'Você conseguiu '+pontos+' '+pont
+    let pont = ''
+    pontos == 0 ? pont = 'ponto' : pont = 'pontos' 
+
+    pergunta.textContent = 'Você conseguiu '+pontos+ ' '+pont
+    aviso.textContent = 'Você conseguiu '+pontos+ ' '+pont
 
     a.textContent = ''
     b.textContent = ''
     c.textContent = ''
+    a.setAttribute('value','')
+    b.setAttribute('value','')
+    c.setAttribute('value','')
 
-    a.setAttribute('value', '')
-    b.setAttribute('value', '')
-    c.setAttribute('value', '')
-    
     articleQuestoes.style.display = 'none'
-    setTimeout(function(){
+    setTimeout(function() {
         pontos = 0
         location.reload()
-    },2000)
+    }, 2000)
 }
