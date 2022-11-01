@@ -16,15 +16,15 @@ function moveRelogio(){
     let momentoAtual = new Date()
 
     let hora = momentoAtual.getHours()
-    let minuto  = momentoAtual.getMinutes() 
-    let segundo = momentoAtual.getSeconds() 
+    let minuto = momentoAtual.getMinutes()
+    let segundo = momentoAtual.getSeconds()
 
     let strHora = new String(hora)
     let strMinuto = new String(minuto)
     let strSegundo = new String(segundo)
 
     if(strSegundo.length == 1) segundo = '0' +segundo
-    if(strMinuto.length == 1) minuto = '0' + minuto
+    if(strMinuto.length == 1) minuto = '0' +minuto
     if(strHora.length == 1) hora = '0' +hora
 
     h.textContent = hora
@@ -41,88 +41,77 @@ function pegarData(){
 
     let diaDaSemana = dataHora.getDay()
     let dia = dataHora.getDate()
-    let mes = dataHora.getMonth() +1 // +1 pq o mes iria de 0 até 11 
+    let mes = dataHora.getMonth() + 1 
     let ano = dataHora.getFullYear()
 
     let strDia = new String(dia)
     let strMes = new String(mes)
 
-    if(strDia.length == 1) dia = '0' + dia
-    if(strMes.length == 1) mes = '0' + mes
+    if(strDia.length == 1) dia = '0' +dia
+    if(strMes.length == 1) mes = '0' +mes
 
     switch(diaDaSemana){
         case 0:
             diaDaSemana = 'DOM'
-            break;
+            break
         case 1:
             diaDaSemana = 'SEG'
-            break;
+            break
         case 2:
             diaDaSemana = 'TER'
-            break;
+            break   
         case 3:
             diaDaSemana = 'QUA'
-            break;
+            break
         case 4:
             diaDaSemana = 'QUI'
-            break;
+            break
         case 5:
             diaDaSemana = 'SEX'
-            break;
+            break   
         case 6:
-            diaDaSemana = 'SÁB'
-            break;
-
+            diaDaSemana = 'SAB'
+            break    
     }
-    let dataAtual = dia + '/' + mes + '/' + ano
+    let dataAtual = dia+ '/' + mes + '/' +ano
 
     semana.textContent = diaDaSemana
     data.textContent = dataAtual
 }
 pegarData()
 
-var options = {
-    weekday : 'long',
-    year : 'numeric',
-    month : 'long',
-    day : 'numeric'
-}
-let teste = new Date()
-
-console.log(teste.toLocaleString('pt-BR'))
-console.log(teste.toLocaleString('pt-BR', options))
-console.log(teste.toLocaleDateString('pt-BR'))
-console.log(teste.toLocaleTimeString('pt-BR'))
-
 function getUserPosition(){
     let url = ''
     navigator.geolocation.getCurrentPosition((pos) => {
         let lat = pos.coords.latitude
         let long = pos.coords.longitude
-        url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&APPID=622296cd4fda08b69c46ccfa980f968d`
+        url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&APPID=56dcb9ce9559149ad636a6d45e5f633b`
         fetchApi(url)
         console.log(url)
     })
 }
 function fetchApi(url){
     let city = document.querySelector('.city')
-    let temperature = document.querySelector('#temp')
+    let temperature = document.querySelector('#temperatura')
     let huminaty = document.querySelector('#umidad')
 
     fetch(url)
     .then((data) => {
         return data.json()
     })
-    .then ((data) => {
+    .then((data) => {
         let tempInCelsius = ((5/9) * (data.main.temp-32)).toFixed(1)
-        
+
         city.textContent = data.name
         temperature.textContent = tempInCelsius
         huminaty.innerHTML = data.main.huminaty
     })
     .catch((err) => {
-        city.innerHTML = `Impossível acessar o openWheater. Verifique a sua conexão`
+        city.innerHTML = `Impossível acessar o openWeather. Verifique a sua conexão`
         temperature.innerHTML = '-'
     })
 }
+
 getUserPosition()
+
+/* url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&APPID=56dcb9ce9559149ad636a6d45e5f633b`*/
