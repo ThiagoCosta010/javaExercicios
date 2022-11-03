@@ -13,6 +13,7 @@ let semana = document.querySelector('#semana')
 let dataHora = new Date()
 
 function moveRelogio(){
+
     let momentoAtual = new Date()
 
     let hora = momentoAtual.getHours()
@@ -23,9 +24,9 @@ function moveRelogio(){
     let strMinuto = new String(minuto)
     let strSegundo = new String(segundo)
 
-    if(strSegundo.length == 1) segundo = '0' +segundo
-    if(strMinuto.length == 1) minuto = '0' +minuto
-    if(strHora.length == 1) hora = '0' +hora
+    if(strSegundo.length == 1) segundo = '0' + segundo
+    if(strMinuto.length == 1) minuto = '0' + minuto
+    if(strHora.length == 1) hora = '0' + hora
 
     h.textContent = hora
     m.textContent = minuto
@@ -41,14 +42,14 @@ function pegarData(){
 
     let diaDaSemana = dataHora.getDay()
     let dia = dataHora.getDate()
-    let mes = dataHora.getMonth() + 1 
+    let mes = dataHora.getMonth() + 1
     let ano = dataHora.getFullYear()
 
     let strDia = new String(dia)
     let strMes = new String(mes)
 
-    if(strDia.length == 1) dia = '0' +dia
-    if(strMes.length == 1) mes = '0' +mes
+    if(strDia.length == 1) dia = '0' + dia
+    if(strMes.length == 1) mes = '0' + mes
 
     switch(diaDaSemana){
         case 0:
@@ -59,7 +60,7 @@ function pegarData(){
             break
         case 2:
             diaDaSemana = 'TER'
-            break   
+            break
         case 3:
             diaDaSemana = 'QUA'
             break
@@ -68,19 +69,19 @@ function pegarData(){
             break
         case 5:
             diaDaSemana = 'SEX'
-            break   
+            break
         case 6:
             diaDaSemana = 'SAB'
             break    
     }
-    let dataAtual = dia+ '/' + mes + '/' +ano
+    let dataAtual = dia + '/' + mes + '/' + ano
 
-    semana.textContent = diaDaSemana
     data.textContent = dataAtual
+    semana.textContent = diaDaSemana
 }
 pegarData()
 
-function getUserPosition(){
+function getUserPositon(){
     let url = ''
     navigator.geolocation.getCurrentPosition((pos) => {
         let lat = pos.coords.latitude
@@ -92,7 +93,7 @@ function getUserPosition(){
 }
 function fetchApi(url){
     let city = document.querySelector('.city')
-    let temperature = document.querySelector('#temperatura')
+    let temperature = document.querySelector('#temp')
     let huminaty = document.querySelector('#umidad')
 
     fetch(url)
@@ -104,14 +105,13 @@ function fetchApi(url){
 
         city.textContent = data.name
         temperature.textContent = tempInCelsius
-        huminaty.innerHTML = data.main.huminaty
+        huminaty.textContent = data.main.huminaty
     })
     .catch((err) => {
-        city.innerHTML = `Impossível acessar o openWeather. Verifique a sua conexão`
-        temperature.innerHTML = '-'
+        city.innerHTML = `Impossível usar o openWeather. Verifique a sua conexão`
+        temperature.textContent = '-'
     })
 }
-
-getUserPosition()
+getUserPositon()
 
 /* url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&APPID=56dcb9ce9559149ad636a6d45e5f633b`*/
