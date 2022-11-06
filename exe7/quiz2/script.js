@@ -136,10 +136,10 @@ a.textContent = q1.alternativaA
 b.textContent = q1.alternativaB
 c.textContent = q1.alternativaC
 d.textContent = q1.alternativaD
-a.setAttribute('value','1A')
-b.setAttribute('value','1b')
-c.setAttribute('value','1C')
-d.setAttribute('value','1D')
+a.setAttribute('value', '1A')
+b.setAttribute('value', '1B')
+c.setAttribute('value', '1C')
+d.setAttribute('value', '1D')
 
 function proximaQuestao(nQuestao){
     numero.textContent = nQuestao
@@ -149,16 +149,16 @@ function proximaQuestao(nQuestao){
     b.textContent = questoes[nQuestao].alternativaB
     c.textContent = questoes[nQuestao].alternativaC
     d.textContent = questoes[nQuestao].alternativaD
-    a.setAttribute('value',nQuestao+'A')
-    b.setAttribute('value',nQuestao+'B')
-    c.setAttribute('value',nQuestao+'C')
-    d.setAttribute('value',nQuestao+'D')
+    a.setAttribute('value', nQuestao+ 'A')
+    b.setAttribute('value', nQuestao+ 'B')
+    c.setAttribute('value', nQuestao+ 'C')
+    d.setAttribute('value', nQuestao+ 'D')
     progresso.value = parseInt(progresso.value) + 1
 }
-alternativas.addEventListener('dblclick',(() => {
+alternativas.addEventListener('dblclick',function(){
     pontos -= 10
     if(numQuestao.value == 10 && pontos == 110) {pontos == 100}
-}))
+})
 function bloquearAlternativas(){
     alternativas.classList.add('bloqueado')
 }
@@ -181,22 +181,24 @@ function verificarSeAcertou(nQuestao, resposta){
     let numeroDaQuestao = nQuestao.value
     let respostaEscolhida = resposta.textContent
     let certa = questoes[numeroDaQuestao].correta
-    if(certa == respostaEscolhida){
+    if(respostaEscolhida == certa){
+        pontos += 10
         piscarNoAcerto()
         somAcerto.play()
-        pontos += 10
         if(numQuestao.value == 1 && pontos == 20) {pontos = 10}
-    }else{
+    }
+    else{
         piscarNoErro()
         somErro.play()
     }
     setTimeout(function() {
         pararDePiscar()
     },150)
+
     placar = pontos
     instrucoes.textContent = 'Pontos '+placar
     bloquearAlternativas()
-    setTimeout(function(){
+    setTimeout(() => {
         proxima = numeroDaQuestao + 1
         if(proxima > totalDeQuestoes){
             fimDoJogo()
@@ -210,15 +212,16 @@ function fimDoJogo(){
     somAplausos.play()
     let s = 's'
     pontos == 0 ? s = '' : s = s
-    instrucoes.textContent = 'Você conseguiu '+pontos+' ponto'+s
+    instrucoes.textContent = 'Você conseguiu ' +pontos+ ' ponto'+s
 
     instrucoes.classList.add('placar')
-
+    
     articleQuestoes.style.display = 'none'
-    setTimeout(function(){
+
+    setTimeout(function() {
         articleQuestoes.style.display = 'block'
-        pontos = 0
         proximaQuestao(1)
+        pontos = 0
         instrucoes.textContent = 'Leia a questão e clique na resposta correta'
     },8000)
 }

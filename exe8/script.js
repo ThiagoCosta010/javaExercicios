@@ -10,11 +10,12 @@ let sSmart = document.querySelector('#sSmart')
 let data = document.querySelector('#data')
 let semana = document.querySelector('#semana')
 
-let dataHora = new Date()
+let Datahora = new Date()
 
 function moveRelogio(){
 
     let momentoAtual = new Date()
+
     let hora = momentoAtual.getHours()
     let minuto = momentoAtual.getMinutes()
     let segundo = momentoAtual.getSeconds()
@@ -27,21 +28,21 @@ function moveRelogio(){
     if(strMinuto.length == 1) minuto = '0' + minuto
     if(strSegundo.length == 1) segundo = '0' + segundo
 
-    hSmart.textContent = hora
-    mSmart.textContent = minuto
-    sSmart.textContent = segundo
-
     h.textContent = hora
     m.textContent = minuto
     s.textContent = segundo
 
-    setTimeout('moveRelogio()', 1000)
+    hSmart.textContent = hora
+    mSmart.textContent = minuto
+    sSmart.textContent = segundo
+
+    setInterval('moveRelogio()', 1000)
 }
 function pegarData(){
-    let dataSemana = dataHora.getDay()
-    let dia = dataHora.getDate()
-    let mes = dataHora.getMonth() + 1
-    let ano = dataHora.getFullYear()
+    let dataSemana = Datahora.getDay()
+    let dia = Datahora.getDate()
+    let mes = Datahora.getMonth() + 1
+    let ano = Datahora.getFullYear()
 
     let strDia = new String(dia)
     let strMes = new String(mes)
@@ -73,7 +74,6 @@ function pegarData(){
             break                        
     }
     let dataAtual = dia + '/' + mes + '/' + ano
-
     data.textContent = dataAtual
     semana.textContent = dataSemana
 }
@@ -105,7 +105,7 @@ function fetchApi(url){
         huminaty.textContent = data.main.huminaty
     })
     .catch((err) => {
-        city.innerHTML = 'Erro ao acessar o open weather'
+        city.innerHTML = 'Erro ao se conectar com open weather'
         temperature.textContent = '-'
     })
 }
