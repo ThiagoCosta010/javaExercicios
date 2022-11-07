@@ -10,7 +10,7 @@ let sSmart = document.querySelector('#sSmart')
 let data = document.querySelector('#data')
 let semana = document.querySelector('#semana')
 
-let Datahora = new Date()
+let dataHora = new Date()
 
 function moveRelogio(){
 
@@ -39,10 +39,11 @@ function moveRelogio(){
     setInterval('moveRelogio()', 1000)
 }
 function pegarData(){
-    let dataSemana = Datahora.getDay()
-    let dia = Datahora.getDate()
-    let mes = Datahora.getMonth() + 1
-    let ano = Datahora.getFullYear()
+
+    let dataSemana = dataHora.getDay()
+    let dia = dataHora.getDate()
+    let mes = dataHora.getMonth() + 1
+    let ano = dataHora.getFullYear()
 
     let strDia = new String(dia)
     let strMes = new String(mes)
@@ -59,7 +60,7 @@ function pegarData(){
             break
         case 2:
             dataSemana = 'TER'
-            break
+            break   
         case 3:
             dataSemana = 'QUA'
             break
@@ -68,14 +69,16 @@ function pegarData(){
             break
         case 5:
             dataSemana = 'SEX'
-            break
+            break   
         case 6:
             dataSemana = 'SAB'
-            break                        
+            break               
     }
+
     let dataAtual = dia + '/' + mes + '/' + ano
     data.textContent = dataAtual
     semana.textContent = dataSemana
+    
 }
 pegarData()
 
@@ -105,8 +108,9 @@ function fetchApi(url){
         huminaty.textContent = data.main.huminaty
     })
     .catch((err) => {
-        city.innerHTML = 'Erro ao se conectar com open weather'
+        city.innerHTML = 'Erro ao acessar o Open Weather'
         temperature.textContent = '-'
+        huminaty.textContent = '-'
     })
 }
 getUserPosition()
