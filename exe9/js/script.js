@@ -14,16 +14,16 @@ function pegarDados(i){
     .then(response => response.json())
     .then(dados => {
         if(dados.erro){
-            console.log('erro ao acessar o arquivo JSON')
+            console.log('erro ao acessar JSON')
             return
         }
         let qtdDeLutadores = (dados.lutadores.length)
         console.log('número de lutadores: '+qtdDeLutadores)
-        atribuirDados2(dados,i)
+        atribuirDados2(dados, i)
     })
 }
 function atribuirDados(dados, i){
-    imgFoto.setAttribute('src', 'img/'+ dados.lutadores[i].foto)
+    imgFoto.setAttribute('src', 'img/' +dados.lutadores[i].foto)
     nome.textContent = dados.lutadores[i].nome
     nacionalidade.textContent = dados.lutadores[i].nacionalidade
     idade.textContent = dados.lutadores[i].idade + ' anos'
@@ -31,15 +31,15 @@ function atribuirDados(dados, i){
     altura.textContent = (dados.lutadores[i].altura).toString(2) + ' m'
 }
 let imgsFoto = document.getElementsByClassName('foto')
-let nomesLutadores = document.getElementsByClassName('nome')
+let nomeLutadores = document.getElementsByClassName('nome')
 let nacionalidadeLutadores = document.getElementsByClassName('nacionalidade')
 let idadeLutadores = document.getElementsByClassName('idade')
 let pesoLutadores = document.getElementsByClassName('peso')
 let alturaLutadores = document.getElementsByClassName('altura')
 
-function atribuirDados2(dados,i){
-    imgsFoto[i].setAttribute('src', 'img/'+dados.lutadores[i].foto)
-    nomesLutadores[i].textContent = dados.lutadores[i].nome
+function atribuirDados2(dados, i){
+    imgsFoto[i].setAttribute('src', 'img/' +dados.lutadores[i].foto)
+    nomeLutadores[i].textContent = dados.lutadores[i].nome
     nacionalidadeLutadores[i].textContent = dados.lutadores[i].nacionalidade
     idadeLutadores[i].textContent = dados.lutadores[i].idade + ' anos'
     pesoLutadores[i].textContent = dados.lutadores[i].peso + ' kg'
@@ -47,37 +47,37 @@ function atribuirDados2(dados,i){
 }
 function desenharCarta(id){
     let carta = document.createElement('article')
-    carta.setAttribute('class', 'card')
+    carta.setAttribute('class','card')
     sectionConteudos.appendChild(carta)
 
     let imagem = document.createElement('img')
     carta.appendChild(imagem)
+    imagem.setAttribute('src','img/pride_fc.jpg')
     imagem.setAttribute('class','foto')
-    imagem.setAttribute('src', 'img/pride_fc.jpg')
 
     let nomeLutador = document.createElement('h2')
-    nomeLutador.setAttribute('class','nome')
     carta.appendChild(nomeLutador)
+    nomeLutador.setAttribute('class','nome')
     nomeLutador.textContent = 'Nome'
 
     let nacionalidadeLutador = document.createElement('h3')
-    nacionalidadeLutador.setAttribute('class','nacionalidade')
     carta.appendChild(nacionalidadeLutador)
+    nacionalidadeLutador.setAttribute('class','nacionalidade')
     nacionalidadeLutador.textContent = 'Nacionalidade'
 
     let idadeLutador = document.createElement('h3')
-    idadeLutador.setAttribute('class','idade')
     carta.appendChild(idadeLutador)
+    idadeLutador.setAttribute('class','idade')
     idadeLutador.textContent = 'idade anos'
 
     let pesoLutador = document.createElement('h3')
-    pesoLutador.setAttribute('class','peso')
     carta.appendChild(pesoLutador)
+    pesoLutador.setAttribute('class','peso')
     pesoLutador.textContent = 'peso kg'
 
     let alturaLutador = document.createElement('h3')
-    alturaLutador.setAttribute('class', 'altura')
     carta.appendChild(alturaLutador)
+    alturaLutador.setAttribute('class','altura')
     alturaLutador.textContent = 'altura m'
 
     pegarDados(id)
@@ -88,7 +88,6 @@ desenharCarta(1)
 desenharCarta(2)
 desenharCarta(3)
 desenharCarta(4)
-
 desenharCarta(5)
 desenharCarta(6)
 desenharCarta(7)
