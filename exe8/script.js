@@ -88,8 +88,8 @@ function getUserPosition(){
         let lat = pos.coords.latitude
         let long = pos.coords.longitude
         url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&APPID=56dcb9ce9559149ad636a6d45e5f633b`
-        fetchApi(url)
         console.log(url)
+        fetchApi(url)
     })
 }
 function fetchApi(url){
@@ -108,9 +108,8 @@ function fetchApi(url){
         huminaty.textContent = data.main.huminaty
     })
     .catch((err) => {
-        city.innerHTML = 'Erro ao acessar o Open Weather'
+        city.innerHTML = 'erro ao acessar open weather'
         temperature.textContent = '-'
-        huminaty.textContent = '-'
     })
 }
 getUserPosition()
