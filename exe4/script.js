@@ -9,24 +9,24 @@ let numeroSecreto = 0
 let situacao = ''
 
 function gerarNumeroSecreto(){
-    numeroSecreto = Math.floor(Math.random()*(max - min + 1)) + min
+    numeroSecreto = Math.floor(Math.random() * (max - min + 1)) + min
     console.log(numeroSecreto)
 }
 function bloquearBtnChutar(){
-    btnChutar.setAttribute('disabled','disabled')
+    btnChutar.setAttribute('disable','disabled')
     btnChutar.style.background = '#ccc'
     btnChutar.style.cursor = 'not-allowed'
 }
 function ativarBtnChutar(){
-    btnChutar.removeAttribute('disabled')
+    btnChutar.removeAttribute('disable')
     btnChutar.style.background = '#222'
     btnChutar.style.cursor = 'pointer'
 }
 function validarNumeroDigitado(numero){
     if(numero <= 0 || numero > 10){
-        aviso.classList.add('errou')
-        mensagemRapida('Digite um valor entre 1 e 10')
         inputNumero.value = ''
+        aviso.classList.add('errou')
+        mensagemRapida('Digite um número entre 1 e 10')
         bloquearBtnChutar()
     }else{
         console.log('numero valido')
@@ -35,45 +35,45 @@ function validarNumeroDigitado(numero){
 function jogar(){
     verificarSeAcertou()
 }
-function tocarMusicaDeFundo() {
+function tocarMusicaDeFundo(){
     musica.play()
 }
-function ativarDesativarMusica() {
+function ativarDesativarMusica(){
     if(musica.muted){
-        musica.muted = false
-    }else{
-        musica.muted = true
+        musica = false
+    }else {
+        musica = true
     }
 }
-function pausarAtivarMusica(){
+function pausarMusica(){
     musica.pause()
     musica.currentTime = 0
 }
 function mensagemRapida(mensagem){
     aviso.textContent = mensagem
-    setTimeout(function(){
-        aviso.textContent = ''
+    setTimeout(function() {
         aviso.classList.remove('errou')
         aviso.classList.remove('acertou')
         inputNumero.value = ''
-    },3000)
+        aviso.textContent = ''
+    }, 2000)
 }
 function gameOver(situacao){
     switch(situacao){
         case 'Acertou':
             aviso.classList.add('acertou')
-            mensagemRapida('Você acertou o número secreto é: '+numeroSecreto)
+            mensagemRapida('Parabéns o número secreto era: '+numeroSecreto)
             break
         case 'Chute maior':
             aviso.classList.add('errou')
-            mensagemRapida('Chute maior que o número secreto')  
+            mensagemRapida('Chute maior que o número secreto')
             break
         case 'Chute menor':
-            aviso.classList.add('errou')     
+            aviso.classList.add('errou')   
             mensagemRapida('Chute menor que o número secreto')
             break
         default:
-            console.log('situação indefinida')     
+            console.log('situação indefinida')    
     }
 }
 function verificarSeAcertou(){
@@ -82,13 +82,13 @@ function verificarSeAcertou(){
         situacao = 'Acertou'
         gameOver(situacao)
         gerarNumeroSecreto()
-    }else if(chute > numeroSecreto){
+    }else if( chute > numeroSecreto){
         situacao = 'Chute maior'
         gameOver(situacao)
-    }else if(chute < numeroSecreto){
+    }else if( chute < numeroSecreto){
         situacao = 'Chute menor'
         gameOver(situacao)
     }else{
-        console.log('Impossível saber se acertou')
+        console.log('chute invalido')
     }
 }

@@ -10,11 +10,11 @@ let formulario = document.querySelector('form')
 function calcularMedia(n1,n2){
     return (n1 + n2) / 2
 }
-function situacaoFinal(mediaFinal){
+function situacaoFinal(nota){
     let situacaoFinal = ''
-    if(mediaFinal >= 7){
+    if(nota >= 7){
         situacaoFinal = 'Aprovado(a)'
-    }else if(mediaFinal <= 3){
+    }else if(nota <= 3){
         situacaoFinal = 'Reprovado(a)'
     }else{
         situacaoFinal = 'Recuperação'
@@ -34,28 +34,28 @@ function formatarSituacao(situacaoFinal){
             cxSituacao.classList.add('reprovado')
             break
         case 'Recuperação':
-            cxSituacao.classList.remove('aprovado')
             cxSituacao.classList.remove('reprovado')
+            cxSituacao.classList.remove('aprovado')
             cxSituacao.classList.add('recuperacao')
-            break  
+            break        
         default:
-            console.log('Situação Indefinida')
+            console.log('situação indefinida')   
     }
 }
 function validarNumero(numero){
     let num1 = cxNota1.value
-    let num2 = cxNota2.value 
+    let num2 = cxNota2.value
     if(num1 < 0 || num1 > 10 || num2 < 0 || num2 > 10){
-        formulario.reset()
+        cxSituacao.value = ''
         aviso.classList.add('alerta')
-        aviso.textContent = 'Digite um número entre 0 e 10'
-        setTimeout(function(){
+        aviso.textContent = 'Digite um número entre 1 e 10'
+        setTimeout(function() {
             aviso.classList.remove('alerta')
             aviso.textContent = ''
         },2000)
     }
 }
-btnCalcular.addEventListener('click',function(e){
+btnCalcular.addEventListener('click', function(e) {
     let nota1 = parseFloat(cxNota1.value)
     let nota2 = parseFloat(cxNota2.value)
     let media = calcularMedia(nota1,nota2)
@@ -66,13 +66,10 @@ btnCalcular.addEventListener('click',function(e){
         cxSituacao.value = situacaoFinal(media)
         formatarSituacao(situacaoFinal(media))
     }
-
     e.preventDefault()
-
 })
 btnLimpar.addEventListener('click',function(){
     cxSituacao.classList.remove('aprovado')
-    cxSituacao.classList.remove('reprovado')
     cxSituacao.classList.remove('recuperacao')
-
+    cxSituacao.classList.remove('reprovado')
 })
