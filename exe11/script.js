@@ -1,7 +1,7 @@
 let ulsElis = document.querySelectorAll('ul li')
 
 let qtdItens = ulsElis.length
-console.log('Quant. lis ' + qtdItens)
+console.log('Quant lis ' + qtdItens)
 
 let numDeItens = 6
 
@@ -22,20 +22,16 @@ numDeVideos[4].textContent = lista5.length
 function show(indice, indiceLista){
     let n = indice
     numDeItens = numDeItens + indice
-    console.log(n + ' ' + numDeItens)
+    console.log(n+ '' + numDeItens)
 
-    let listaUl = document.querySelector('#lista'+indiceLista)
-
+    let listaUl = document.querySelector('#lista' +indiceLista)
     let mover = 100
     let posicaoXDireita = mover
     let posicaoXEsquerda = -mover
-
     if(indice == +1){
-        //console.log('Mover para direita')
         listaUl.scrollBy(posicaoXDireita, 0)
     }
     if(indice == -1){
-        //console.log('Mover para esquerda')
         listaUl.scrollBy(posicaoXEsquerda, 0)
     }
 }

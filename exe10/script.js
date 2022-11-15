@@ -7,24 +7,24 @@ let aviso = document.querySelector('#aviso')
 let divBaixar = document.querySelector('#divBaixar')
 
 function criarCitacao(){
-    let inputData = document.querySelector('#data').value 
+    let dataInput = document.querySelector('#data').value
     let citacao = document.querySelector('#citacao').value
     let autoria = document.querySelector('#autoria').value
 
-    let data = new Date(inputData)
+    let data = new Date(dataInput)
     let dataFormatada = data.toLocaleDateString('pt-BR',{timeZone: 'UTC'})
 
-    if(data == '' || citacao == '' || autoria == ''){
+    if(data.value == 0 || citacao == '' || autoria == ''){
         abrirModal()
     }else{
         criarMensagem(data, citacao, autoria)
-        window.scroll(0,670)
+        window.scroll(0,650)
     }
 }
 function abrirModal(){
     location.href = '#abrirModal'
-}
-function criarMensagem(data, citacao,autoria){
+}   
+function criarMensagem(data, citacao, autoria){
     dataCitacao.textContent = data
     textoCitacao.textContent = citacao
     autoriaCitacao.textContent = autoria
@@ -36,11 +36,11 @@ function download(){
         document.body.appendChild(canvas)
     })
     let aviso2 = document.querySelector('#aviso2')
-    aviso2.textContent = 'Clique com o botão direito para baixar'
+    aviso2.textContent = 'Clique com o botão direito para salvar'
 }
 const btnLimpar = document.querySelector('#btnLimpar')
 
-btnLimpar.addEventListener('click', () => {
+btnLimpar.addEventListener('click',() => {
     document.location.reload()
     window.scroll(0,0)
 })

@@ -13,14 +13,15 @@ let valorEmReal    = 0
 
 function mensagemFormatada(moedaConvertida){
     isNaN(valorEmReal) ? valorEmReal = 0 : ''
-    aviso.textContent = 'O valor '+(valorEmReal).toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'})
-    + ' convertido em ' +moedaEstrangeira+ ' é '+moedaConvertida 
+    aviso.textContent = 'o valor ' +(valorEmReal).toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'})
+    + ' convertido em ' +moedaEstrangeira+ ' é ' +moedaConvertida
 }
 function bloquearBotao(){
-    if(valorDigitado.value == 0 || valorDigitado.value == '' || valorDigitado == null)
-    btnConverter.setAttribute('disabled','disabled')
-    btnConverter.style.background = '#ccc'
-    btnConverter.style.cursor = 'not-allowed'
+    if(valorDigitado.value == 0 || valorDigitado.value == '' || valorDigitado == null){
+        btnConverter.setAttribute('disabled','disabled')
+        btnConverter.style.background = '#ccc'
+        btnConverter.style.cursor = 'not-allowed'
+    }
 }
 function ativarBotao(){
     if(valorDigitado.value > 0){
@@ -28,10 +29,10 @@ function ativarBotao(){
         btnConverter.style.background = '#ffc107'
         btnConverter.style.cursor = 'pointer'
     }else{
-        console.log('número invaldo')
+        console.log('número invalido')
     }
 }
-btnConverter.addEventListener('click',function() {
+btnConverter.addEventListener('click',() => {
     valorEmReal = parseFloat(valorDigitado.value)
     for(let i = 0; i < moedaSelecionada.length; i++){
         if(moedaSelecionada[i].checked){
@@ -40,12 +41,12 @@ btnConverter.addEventListener('click',function() {
     }
     switch(moedaEstrangeira){
         case 'Dólar':
-            moedaConvertida = valorEmReal /valorDoDolar
-            mensagemFormatada(moedaConvertida.toLocaleString('en-US',{style: 'currency', currency:'USD'}))
+            moedaConvertida = valorEmReal / valorDoDolar
+            mensagemFormatada(moedaConvertida.toLocaleString('en-US',{style: 'currency', currency: 'USD'}))
             break
         case 'Euro':
             moedaConvertida = valorEmReal / valorDoEuro
-            mensagemFormatada(moedaConvertida.toLocaleString('de-DE',{style: 'currency', currency:'EUR' }))
+            mensagemFormatada(moedaConvertida.toLocaleString('de-DE',{style: 'currency', currency: 'EUR'}))
             break
         case 'Libra':
             moedaConvertida = valorEmReal / valorDaLibra
@@ -53,15 +54,17 @@ btnConverter.addEventListener('click',function() {
             break
         case 'Bitcoins':
             moedaConvertida = valorEmReal / valorDoBitcoin
-            mensagemFormatada(parseFloat(moedaConvertida).toFixed(5))
-            break        
+            mensagemFormatada(parseFloat(valorDoBitcoin).toFixed(5))
+            break    
     }
+
     isNaN(moedaConvertida) ? moedaConvertida = 0 : ''
 })
-btnLimpar.addEventListener('click',function(){
-    valorDigitado.focus()
+btnLimpar.addEventListener('click',function() {
+    bloquearBotao()
     valorDigitado.value = ''
-    aviso.textContent = 'Selecione uma moeda e converta ela'
+    valorDigitado.focus()
+    aviso.textContent = 'Selecione uma moeda e a converta'
     moedaSelecionada[0].checked = false
     moedaSelecionada[1].checked = false
     moedaSelecionada[2].checked = false
