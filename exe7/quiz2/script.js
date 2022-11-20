@@ -127,7 +127,7 @@ let total = document.querySelector('#total')
 
 numero.textContent = q1.numQuestao
 
-let totalDeQuestoes = (questoes.length) - 1 
+let totalDeQuestoes = (questoes.length) - 1
 total.textContent = totalDeQuestoes
 
 numQuestao.textContent = q1.numQuestao
@@ -136,12 +136,12 @@ a.textContent = q1.alternativaA
 b.textContent = q1.alternativaB
 c.textContent = q1.alternativaC
 d.textContent = q1.alternativaD
-a.setAttribute('value', '1A')
-b.setAttribute('value', '1B')
-c.setAttribute('value', '1C')
-d.setAttribute('value', '1D')
+a.setAttribute('value','1A')
+b.setAttribute('value','1B')
+c.setAttribute('value','1C')
+d.setAttribute('value','1D')
 
-function proximaQuestao(nQuestao){
+function proximaAlternativa(nQuestao){
     numero.textContent = nQuestao
     numQuestao.textContent = questoes[nQuestao].numQuestao
     pergunta.textContent = questoes[nQuestao].pergunta
@@ -149,13 +149,13 @@ function proximaQuestao(nQuestao){
     b.textContent = questoes[nQuestao].alternativaB
     c.textContent = questoes[nQuestao].alternativaC
     d.textContent = questoes[nQuestao].alternativaD
-    a.setAttribute('value',nQuestao+ 'A')
-    b.setAttribute('value',nQuestao+ 'B')
-    c.setAttribute('value',nQuestao+ 'C')
-    d.setAttribute('value',nQuestao+ 'D')
+    a.setAttribute('value',nQuestao+'A')
+    b.setAttribute('value',nQuestao+'B')
+    c.setAttribute('value',nQuestao+'C')
+    d.setAttribute('value',nQuestao+'D')
     progresso.value = parseInt(progresso.value) + 1
 }
-alternativas.addEventListener('dblclick',function() {
+alternativas.addEventListener('dblclick', function() {
     pontos -= 10
     if(numQuestao.value == 10 && pontos == 110) {pontos == 100}
 })
@@ -190,40 +190,40 @@ function verificarSeAcertou(nQuestao, resposta){
         piscarNoErro()
         somErro.play()
     }
-    setTimeout(() => {
+    setTimeout(function() {
         pararDePiscar()
-    },150)
+    }, 150)
     placar = pontos
     instrucoes.textContent = 'Pontos ' + placar
     bloquearAlternativas()
+
     setTimeout(() => {
         proxima = numeroDaQuestao + 1
         if(proxima > totalDeQuestoes){
             fimDoJogo()
         }else{
-            proximaQuestao(proxima)
+            proximaAlternativa(proxima)
         }
     }, 150)
     desbloquearAlternativas()
 }
-function fimDoJogo() {
-
+function fimDoJogo(){
     somAplausos.play()
 
-    let s = 's'
+    let s = ''
     pontos == 0 ? s = '' : s = s
-    instrucoes.textContent = "Fim de Jogo! Você conseguiu " + pontos + " ponto"+ s
 
+    instrucoes.textContent = 'Fim do jogo! você terminou com ' +pontos+ ' ponto'+s
+    
     instrucoes.classList.add('placar')
 
     articleQuestoes.style.display = 'none'
 
     setTimeout(function() {
         pontos = 0
+        proximaAlternativa(1)
         instrucoes.classList.remove('placar')
         articleQuestoes.style.display = 'block'
-        proximaQuestao(1)
         instrucoes.textContent = 'Leia a questão e clique na resposta correta'
     }, 8000)
-
 }

@@ -30,10 +30,10 @@ function show(indice, indiceLista){
     let posicaoXDireita = mover
     let posicaoXEsquerda = -mover
 
-    if(indice == +1){
+    if(indice == + 1){
         listaUl.scrollBy(posicaoXDireita, 0)
     }
-    if(indice == -1){
+    if(indice == - 1){
         listaUl.scrollBy(posicaoXEsquerda, 0)
     }
 }

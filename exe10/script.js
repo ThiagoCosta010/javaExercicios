@@ -12,8 +12,7 @@ function criarCitacao(){
     let autoria = document.querySelector('#autoria').value
 
     let data = new Date(dataInput)
-    let dataFormatada = data.toLocaleDateString('pt-BT',{timeZone: 'UTC'})
-
+    let dataFormatada = data.toLocaleDateString('pt-BR',{timeZone: 'UTC'})
     if(data == '' || citacao == '' || autoria == ''){
         abrirModal()
     }else{
@@ -24,6 +23,7 @@ function criarCitacao(){
 function abrirModal(){
     location.href = '#abrirModal'
 }
+
 function criarMensagem(data, citacao, autoria){
     dataCitacao.textContent = data
     textoCitacao.textContent = citacao
@@ -36,11 +36,11 @@ function download(){
         document.body.appendChild(canvas)
     })
     let aviso2 = document.querySelector('#aviso2')
-    aviso2.textContent = 'Clique com o botão direito para baixar a imagem'
+    aviso2.textContent = 'Clique com o botão direito para salvar'
 }
 let btnLimpar = document.querySelector('#btnLimpar')
 
-btnLimpar.addEventListener('click', function() {
+btnLimpar.addEventListener('click',function() {
     document.location.reload()
-    window.scroll(0,0)
+    window.scroll(0, 0)
 })
