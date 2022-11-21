@@ -13,33 +13,31 @@ let semana = document.querySelector('#semana')
 let dataHora = new Date()
 
 function moveRelogio(){
-
     let momentoAtual = new Date()
 
-    let hora = momentoAtual.getHours()
-    let minuto = momentoAtual.getMinutes()
     let segundo = momentoAtual.getSeconds()
+    let minuto = momentoAtual.getMinutes()
+    let hora = momentoAtual.getHours()
 
-    let strHora = new String(hora)
-    let strMinuto = new String(minuto)
     let strSegundo = new String(segundo)
+    let strMinuto = new String(minuto)
+    let strHora = new String(hora)
 
-    if(strHora.length == 1) hora = '0' + hora
-    if(strMinuto.length == 1) minuto = '0' + minuto
     if(strSegundo.length == 1) segundo = '0' + segundo
-
-    h.textContent = hora
-    m.textContent = minuto
-    s.textContent = segundo
+    if(strMinuto.length == 1) minuto = '0' + minuto
+    if(strHora.length == 1) hora = '0' + hora
 
     hSmart.textContent = hora
     mSmart.textContent = minuto
     sSmart.textContent = segundo
 
+    h.textContent = hora
+    m.textContent = minuto
+    s.textContent = segundo
+
     setInterval('moveRelogio()', 1000)
 }
 function pegarData(){
-
     let dataSemana = dataHora.getDay()
     let dia = dataHora.getDate()
     let mes = dataHora.getMonth() + 1
@@ -50,7 +48,6 @@ function pegarData(){
 
     if(strDia.length == 1) dia = '0' + dia
     if(strMes.length == 1) mes = '0' + mes
-
     switch(dataSemana){
         case 0:
             dataSemana = 'DOM'
@@ -60,7 +57,7 @@ function pegarData(){
             break
         case 2:
             dataSemana = 'TER'
-            break   
+            break    
         case 3:
             dataSemana = 'QUA'
             break
@@ -69,19 +66,17 @@ function pegarData(){
             break
         case 5:
             dataSemana = 'SEX'
-            break   
+            break
         case 6:
             dataSemana = 'SAB'
-            break               
+            break                
     }
-
-    let dataAtual = dia + '/' + mes + '/' + ano
-    data.textContent = dataAtual
-    semana.textContent = dataSemana
-    
+    let dataFormatada = dia + '/' + mes + '/' + ano
+    data.textContent = dataFormatada
+    semana.textContent = dataSemana 
 }
 pegarData()
-
+    
 function getUserPosition(){
     let url = ''
     navigator.geolocation.getCurrentPosition((pos) => {
@@ -98,17 +93,17 @@ function fetchApi(url){
     let huminaty = document.querySelector('#umidad')
     fetch(url)
     .then((data) => {
-        return data.json()
+       return data.json()
     })
     .then((data) => {
-        let tempInCelsius = ((5/9) * (data.main.temp-32)).toFixed(1)
+        let tempInCelsius = ((9/5) * (data.main.temp-32)).toFixed(1)
 
         city.textContent = data.name
         temperature.textContent = tempInCelsius
         huminaty.textContent = data.main.huminaty
     })
     .catch((err) => {
-        city.innerHTML = 'erro ao acessar open weather'
+        city.innerHTML = 'Erro ao acessar openweather'
         temperature.textContent = '-'
     })
 }
