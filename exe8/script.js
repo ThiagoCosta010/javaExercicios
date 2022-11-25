@@ -77,14 +77,14 @@ function pegarData(){
 }
 pegarData()
     
-function getUserPosition(){
+function getUsePosition(){
     let url = ''
     navigator.geolocation.getCurrentPosition((pos) => {
         let lat = pos.coords.latitude
         let long = pos.coords.longitude
         url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&APPID=56dcb9ce9559149ad636a6d45e5f633b`
-        console.log(url)
         fetchApi(url)
+        console.log(url)
     })
 }
 function fetchApi(url){
@@ -93,19 +93,19 @@ function fetchApi(url){
     let huminaty = document.querySelector('#umidad')
     fetch(url)
     .then((data) => {
-       return data.json()
+        return data.json()
     })
     .then((data) => {
-        let tempInCelsius = ((9/5) * (data.main.temp-32)).toFixed(1)
+        let tempInCelsius = ((5/9) * (data.main.temp-32)).toFixed(1)
 
         city.textContent = data.name
         temperature.textContent = tempInCelsius
         huminaty.textContent = data.main.huminaty
     })
     .catch((err) => {
-        city.innerHTML = 'Erro ao acessar openweather'
+        city.innerHTML = 'erro ao acessar open weather'
         temperature.textContent = '-'
     })
 }
-getUserPosition()
+getUsePosition()
 /* url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&APPID=56dcb9ce9559149ad636a6d45e5f633b`*/
