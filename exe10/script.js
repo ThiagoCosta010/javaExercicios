@@ -7,9 +7,9 @@ let aviso = document.querySelector('#aviso')
 let divBaixar = document.querySelector('#divBaixar')
 
 function criarCitacao(){
-    let dataInput = document.querySelector('#data')
-    let citacao = document.querySelector('#citacao')
-    let autoria = document.querySelector('#autoria')
+    let dataInput = document.querySelector('#data').value
+    let citacao = document.querySelector('#citacao').value
+    let autoria = document.querySelector('#autoria').value
 
     let data = new Date(dataInput)
     let dataFormatada = data.toLocaleDateString('pt-BR',{timeZone: 'UTC'})
@@ -26,7 +26,7 @@ function abrirModal(){
 function criarMensagem(data, citacao, autoria){
     dataCitacao.textContent = data
     textoCitacao.textContent = citacao
-    autoria.textContent = autoria
+    autoriaCitacao.textContent = autoria
     download()
 }
 function download(){
