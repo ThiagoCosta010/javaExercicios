@@ -5,27 +5,28 @@ let sorteado = document.querySelector('#sorteado')
 let numeroSorteado = 0
 
 btnSortear.addEventListener('click',function() {
-
     imgDado.classList.add('animar')
     sorteado.classList.add('aparecer')
     dadoRolando.play()
     btnSortear.style.display = 'none'
 
     setTimeout(function() {
-        imgDado.classList.remove('animar')
-        sorteado.classList.remove('aparecer')
 
-        numeroSorteado = getRandomInt(1,6)
+
+        numeroSorteado = getRandomInt(1 , 6)
+        console.log(numeroSorteado)
 
         imgDado.setAttribute('src', 'img/'+numeroSorteado+'.png')
 
         sorteado.textContent = numeroSorteado
 
         btnSortear.style.display = 'inline-block'
-    },1750)
+        imgDado.classList.remove('animar')
+        sorteado.classList.remove('aparecer')
+    }, 1750)
 })
 function getRandomInt(min,max){
-    max = Math.floor(max)
     min = Math.ceil(min)
-    return Math.ceil(Math.random() * (max - min + 1)) + min
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min + 1)) + min
 }
