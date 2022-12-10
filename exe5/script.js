@@ -13,12 +13,12 @@ let valorEmReal    = 0
 
 function mensagemFormatada(moedaConvertida){
     isNaN(valorEmReal) ? valorEmReal = 0 : ''
-    aviso.textContent = 'o valor ' +(valorEmReal).toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'})
-    + ' convertido em ' +moedaEstrangeira+ ' é ' +moedaConvertida
+    aviso.textContent = 'O valor ' +(valorEmReal).toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'})
+    + ' convertido em ' +moedaEstrangeira+ ' é ' +moedaConvertida 
 }
 function bloquearBotao(){
     if(valorDigitado.value == 0 || valorDigitado.value == '' || valorDigitado == null){
-        btnConverter.setAttribute('disabled','disabled')
+        btnConverter.setAttribute('disabled', 'disabled')
         btnConverter.style.background = '#ccc'
         btnConverter.style.cursor = 'not-allowed'
     }
@@ -29,10 +29,10 @@ function ativarBotao(){
         btnConverter.style.background = '#ffc107'
         btnConverter.style.cursor = 'pointer'
     }else{
-        console.log('número invalido')
+        console.log('valor invalido')
     }
 }
-btnConverter.addEventListener('click',() => {
+btnConverter.addEventListener('click',function() {
     valorEmReal = parseFloat(valorDigitado.value)
     for(let i = 0; i < moedaSelecionada.length; i++){
         if(moedaSelecionada[i].checked){
@@ -51,20 +51,19 @@ btnConverter.addEventListener('click',() => {
         case 'Libra':
             moedaConvertida = valorEmReal / valorDaLibra
             mensagemFormatada(moedaConvertida.toLocaleString('en-GB',{style: 'currency', currency: 'GBP'}))
-            break
+            break        
         case 'Bitcoins':
             moedaConvertida = valorEmReal / valorDoBitcoin
-            mensagemFormatada(parseFloat(valorDoBitcoin).toFixed(5))
+            mensagemFormatada(parseFloat(moedaConvertida).toFixed(5))
             break    
     }
-
     isNaN(moedaConvertida) ? moedaConvertida = 0 : ''
 })
-btnLimpar.addEventListener('click',function() {
+btnLimpar.addEventListener('click', function() {
     bloquearBotao()
+    aviso.textContent = 'Digite um valor, escolha a moeda e converta'
     valorDigitado.value = ''
     valorDigitado.focus()
-    aviso.textContent = 'Selecione uma moeda e a converta'
     moedaSelecionada[0].checked = false
     moedaSelecionada[1].checked = false
     moedaSelecionada[2].checked = false
