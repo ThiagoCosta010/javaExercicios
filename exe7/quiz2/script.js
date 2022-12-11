@@ -128,6 +128,7 @@ let total = document.querySelector('#total')
 numero.textContent = q1.numQuestao
 
 let totalDeQuestoes = (questoes.length) - 1
+
 total.textContent = totalDeQuestoes
 
 numQuestao.textContent = q1.numQuestao
@@ -136,10 +137,10 @@ a.textContent = q1.alternativaA
 b.textContent = q1.alternativaB
 c.textContent = q1.alternativaC
 d.textContent = q1.alternativaD
-a.setAttribute('value','1A')
-b.setAttribute('value','1B')
-c.setAttribute('value','1C')
-d.setAttribute('value','1D')
+a.setAttribute('value', '1A')
+b.setAttribute('value', '1B')
+c.setAttribute('value', '1C')
+d.setAttribute('value', '1D')
 
 function proximaAlternativa(nQuestao){
     numero.textContent = nQuestao
@@ -155,9 +156,9 @@ function proximaAlternativa(nQuestao){
     d.setAttribute('value',nQuestao+'D')
     progresso.value = parseInt(progresso.value) + 1
 }
-alternativas.addEventListener('dblclick', function() {
+alternativas.addEventListener('dblclick',function() {
     pontos -= 10
-    if(numQuestao.value == 10 && pontos == 110) {pontos == 100}
+    if(numQuestao.value == 10 && pontos == 110) {pontos = 100}
 })
 function bloquearAlternativas(){
     alternativas.classList.add('bloqueado')
@@ -165,7 +166,7 @@ function bloquearAlternativas(){
 function desbloquearAlternativas(){
     alternativas.classList.remove('bloqueado')
 }
-function piscarNoAcerto(){
+function piscarNoAcertou(){
     alternativas.classList.remove('errou')
     alternativas.classList.add('acertou')
 }
@@ -174,29 +175,28 @@ function piscarNoErro(){
     alternativas.classList.add('errou')
 }
 function pararDePiscar(){
-    alternativas.classList.remove('acertou')
     alternativas.classList.remove('errou')
+    alternativas.classList.remove('acertou')
 }
-function verificarSeAcertou(nQuestao, resposta){
+function verificarSeAcertou(nQuestao, reposta){
     let numeroDaQuestao = nQuestao.value
-    let respostaEscolhida = resposta.textContent
+    let repostaEscolhida = reposta.textContent
     let certa = questoes[numeroDaQuestao].correta
-    if(certa == respostaEscolhida){
+    if(certa == repostaEscolhida){
         pontos += 10
-        piscarNoAcerto()
+        piscarNoAcertou()
         somAcerto.play()
-        if(numQuestao.value == 1 && pontos == 20) {pontos = 10}
+        if(nQuestao.value == 1 && pontos == 20) {pontos = 10}
     }else{
-        piscarNoErro()
         somErro.play()
+        piscarNoErro()
     }
-    setTimeout(function() {
+    setTimeout(() => {
         pararDePiscar()
     }, 150)
     placar = pontos
-    instrucoes.textContent = 'Pontos ' + placar
+    instrucoes.textContent = 'Pontos '+placar
     bloquearAlternativas()
-
     setTimeout(() => {
         proxima = numeroDaQuestao + 1
         if(proxima > totalDeQuestoes){
@@ -209,21 +209,21 @@ function verificarSeAcertou(nQuestao, resposta){
 }
 function fimDoJogo(){
     somAplausos.play()
-
     let s = ''
-    pontos == 0 ? s = '' : s = s
+    pontos == 0 ? s = '' : s = 's'
 
-    instrucoes.textContent = 'Fim do jogo! você terminou com ' +pontos+ ' ponto'+s
-    
+    instrucoes.textContent = 'Fim do jogo! Você fez '+pontos+ ' ponto'+s
+
     instrucoes.classList.add('placar')
 
     articleQuestoes.style.display = 'none'
 
-    setTimeout(function() {
+    setTimeout(() => {
+        progresso.value = 0
         pontos = 0
         proximaAlternativa(1)
         instrucoes.classList.remove('placar')
         articleQuestoes.style.display = 'block'
-        instrucoes.textContent = 'Leia a questão e clique na resposta correta'
+        instrucoes.textContent = 'Leia a questão e clique na reposta escolhida'
     }, 8000)
 }
