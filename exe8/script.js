@@ -10,87 +10,88 @@ let sSmart = document.querySelector('#sSmart')
 let data = document.querySelector('#data')
 let semana = document.querySelector('#semana')
 
-let dataHora = new Date()
+let dataSemanal = new Date()
 
 function moveRelogio(){
-    let momentoAtual = new Date()
+    let HorMinSeg = new Date()
+    let hora = HorMinSeg.getHours()
+    let minuto = HorMinSeg.getMinutes()
+    let segundo = HorMinSeg.getSeconds()
 
-    let segundo = momentoAtual.getSeconds()
-    let minuto = momentoAtual.getMinutes()
-    let hora = momentoAtual.getHours()
-
-    let strSegundo = new String(segundo)
-    let strMinuto = new String(minuto)
     let strHora = new String(hora)
+    let strMinuto = new String(minuto)
+    let strSegundo = new String(segundo)
 
-    if(strSegundo.length == 1) segundo = '0' + segundo
-    if(strMinuto.length == 1) minuto = '0' + minuto
     if(strHora.length == 1) hora = '0' + hora
-
-    hSmart.textContent = hora
-    mSmart.textContent = minuto
-    sSmart.textContent = segundo
+    if(strMinuto.length == 1) minuto = '0' + minuto
+    if(strSegundo.length == 1) segundo = '0' + segundo
 
     h.textContent = hora
     m.textContent = minuto
     s.textContent = segundo
 
-    setInterval('moveRelogio()', 1000)
+    hSmart.textContent = hora
+    mSmart.textContent = minuto
+    sSmart.textContent = segundo
+
+    setInterval(moveRelogio, 1000)
 }
 function pegarData(){
-    let dataSemana = dataHora.getDay()
-    let dia = dataHora.getDate()
-    let mes = dataHora.getMonth() + 1
-    let ano = dataHora.getFullYear()
+    let diaSemana = dataSemanal.getDay()
+    let dia = dataSemanal.getDate()
+    let mes = dataSemanal.getMonth() + 1
+    let ano = dataSemanal.getFullYear()
 
     let strDia = new String(dia)
     let strMes = new String(mes)
 
-    if(strDia.length == 1) dia = '0' + dia
-    if(strMes.length == 1) mes = '0' + mes
-    switch(dataSemana){
+    if(strDia.length == 1) dia = '0' +dia
+    if(strMes.length == 1) mes = '0' +mes
+
+    switch(diaSemana){
         case 0:
-            dataSemana = 'DOM'
+            diaSemana = 'DOM'
             break
         case 1:
-            dataSemana = 'SEG'
-            break
+            diaSemana = 'SEG'  
+            break  
         case 2:
-            dataSemana = 'TER'
-            break    
+            diaSemana = 'TER'
+            break
         case 3:
-            dataSemana = 'QUA'
+            diaSemana = 'QUA'
             break
         case 4:
-            dataSemana = 'QUI'
-            break
+            diaSemana = 'QUI'
+            break        
         case 5:
-            dataSemana = 'SEX'
+            diaSemana = 'SEX'
             break
         case 6:
-            dataSemana = 'SAB'
-            break                
+            diaSemana = 'SAB'
+            break         
     }
-    let dataFormatada = dia + '/' + mes + '/' + ano
-    data.textContent = dataFormatada
-    semana.textContent = dataSemana 
+    let atualSemana = dia+ '/' +mes+ '/' +ano
+    semana.textContent = atualSemana
+    data.textContent = diaSemana
 }
 pegarData()
-    
-function getUsePosition(){
-    let url = ''
+function getUserPosition(){
     navigator.geolocation.getCurrentPosition((pos) => {
+        let url = ''
         let lat = pos.coords.latitude
         let long = pos.coords.longitude
         url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&APPID=56dcb9ce9559149ad636a6d45e5f633b`
         fetchApi(url)
-        console.log(url)
+        .then((data) => {
+            return data.json()
+        })
     })
 }
 function fetchApi(url){
     let city = document.querySelector('.city')
+    let humidity = document.querySelector('#umidad')
     let temperature = document.querySelector('#temp')
-    let huminaty = document.querySelector('#umidad')
     fetch(url)
     .then((data) => {
         return data.json()
@@ -99,13 +100,14 @@ function fetchApi(url){
         let tempInCelsius = ((5/9) * (data.main.temp-32)).toFixed(1)
 
         city.textContent = data.name
+        humidity.textContent = data.main.humidity
         temperature.textContent = tempInCelsius
-        huminaty.textContent = data.main.huminaty
     })
     .catch((err) => {
-        city.innerHTML = 'erro ao acessar open weather'
+        city.textContent = 'Erro ao acessar Open Weather'
         temperature.textContent = '-'
     })
 }
-getUsePosition()
+getUserPosition()
+    
 /* url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&APPID=56dcb9ce9559149ad636a6d45e5f633b`*/
