@@ -11,8 +11,6 @@ btnSortear.addEventListener('click',function() {
     btnSortear.style.display = 'none'
 
     setTimeout(function() {
-
-
         numeroSorteado = getRandomInt(1 , 6)
         console.log(numeroSorteado)
 
