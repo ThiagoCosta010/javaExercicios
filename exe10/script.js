@@ -8,15 +8,14 @@ let divBaixar = document.querySelector('#divBaixar')
 
 function criarCitacao(){
     let dataInput = document.querySelector('#data').value
-    let citacao = document.querySelector('#citacao').value
+    let citacao = document.querySelecto('#citacao').value
     let autoria = document.querySelector('#autoria').value
-
-    let data = new Date(dataInput)
-    let dataFormatada = data.toLocaleDateString('pt-BR',{timeZone: 'UTC'})
+    let data = new Date(dataInput) 
+    let dataFormatada = data.toLocaleDateString('pt-Br',{timeZone: 'UTC'})
     if(data == '' || citacao == '' || autoria == ''){
         abrirModal()
     }else{
-        criarMensagem(dataFormatada, citacao, autoria),
+        criarMensagem(dataFormatada, citacao, autoria)
         window.scroll(0, 670)
     }
 }
@@ -27,6 +26,7 @@ function criarMensagem(data, citacao, autoria){
     dataCitacao.textContent = data
     textoCitacao.textContent = citacao
     autoriaCitacao.textContent = autoria
+
     download()
 }
 function download(){
@@ -38,7 +38,7 @@ function download(){
 }
 const btnLimpar = document.querySelector('#btnLimpar')
 
-btnLimpar.addEventListener('click',function(){
+btnLimpar.addEventListener('click',function() {
     location.reload()
-    window.scroll(0,0)
+    window.scroll(0, 0)
 })
