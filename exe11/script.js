@@ -1,9 +1,9 @@
 let ulsElis = document.querySelectorAll('ul li')
 
-let qtdItems = ulsElis.length
-console.log('quant de items ' +qtdItems)
+let qtdDeItems = ulsElis.length
+console.log('Quantidade videos ' +qtdDeItems)
 
-let numDeItens = 6
+let numDeItems = 6
 
 let lista1 = document.querySelectorAll('#lista1 li')
 let lista2 = document.querySelectorAll('#lista2 li')
@@ -21,12 +21,12 @@ numDeVideos[4].textContent = lista5.length
 
 function show(indice, indiceLista){
     let n = indice
-    numDeItens = numDeItens + indice
-    console.log(n+ ' ' +numDeItens)
+    numDeItems = indice + numDeItems
+    console.log(n+ ' ' +numDeItems)
 
     let listaUl = document.querySelector('#lista' + indiceLista)
-
     let mover = 100
+
     let posicaoXDireita = mover
     let posicaoXEsquerda = -mover
 
