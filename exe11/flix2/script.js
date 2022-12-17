@@ -1,9 +1,9 @@
 let ulsElis = document.querySelectorAll('ul li')
 let numDeLista = document.querySelectorAll('ul').length
-console.log('Quantidade de categorias: '+numDeLista)
+console.log('Quantidade de categoria: ' +numDeLista)
+let qtdDeVideo = ulsElis.length
+console.log('Quantidade de videos: '+qtdDeVideo) 
 
-let qtdDeVideos = ulsElis.length
-console.log('Quantidade de videos: ' +qtdDeVideos)
 /*
 let lista1 = document.querySelectorAll('#lista1 li')
 let lista2 = document.querySelectorAll('#lista2 li')
@@ -11,13 +11,12 @@ let lista3 = document.querySelectorAll('#lista3 li')
 let lista4 = document.querySelectorAll('#lista4 li')
 let lista5 = document.querySelectorAll('#lista5 li')
 */
-let numDeItens = 5
+let numDeItems = 5
 
 let lista = []
 for(let x = 1; x <= numDeLista; x++){
-    lista[x] = document.querySelectorAll('#lista'+x+ 'li')
+    lista[x] = document.querySelectorAll('#lista'+x+' li')
 }
-
 
 /*
 numDeVideos[0].textContent = lista1.length
@@ -26,30 +25,31 @@ numDeVideos[2].textContent = lista3.length
 numDeVideos[3].textContent = lista4.length
 numDeVideos[4].textContent = lista5.length
 */
-
 let numDeVideos = document.querySelectorAll('.numDeVideos')
 
 for(let y = 0; y <= numDeLista; y++){
     numDeVideos[y].textContent = lista[y+1].length
 }
-
 function show(indice, indiceLista){
     let n = indice
-    numDeItens = numDeItens + indice
-    console.log(n+ ' ' +numDeItens)
-
-    let listaUl = document.querySelector('#lista'+indiceLista)
+    numDeItems = numDeItems + n
+    console.log(n+ '' +numDeItems)
+    
+    let listaUl = document.querySelector('#lista' +indiceLista)
 
     let mover = 100
     let posicaoXDireita = mover
     let posicaoXEsquerda = -mover
+
     if(indice == 1){
-        listaUl.scrollBy(posicaoXDireita, 0 )
+        listaUl.scrollBy(posicaoXDireita, 0)
     }
     if(indice == -1){
         listaUl.scrollBy(posicaoXEsquerda, 0)
     }
+
 }
+
 // JANELA MODAL COM VIDEO
 // EXIBE O VIDEO USANDO IFRAME DO YOUTUBE COM BASE NO CODIGO DO VIDEO
 let iframeVideo = document.querySelector('#iframeVideo')
