@@ -12,15 +12,11 @@ console.log('Núm. de Categorias ' + numDeListas)
 // Serve para fazer o controle do carrossel
 let numDeItens = 5 // sao as capas visiveis no carrossel
 
-function show(indice, indiceLista) {
-    // selecionar a lista com base no nome #lista + numero da lista
-    let listaUl = document.querySelector('#lista'+indiceLista)
-    //console.log(listaUl)
-
+function show(indice, indiceLista){
+    let listaUl = document.querySelector('#lista' +indiceLista)
     let mover = 100
-    let posicaoXDireita  = mover
+    let posicaoXDireita = mover
     let posicaoXEsquerda = -mover
-
     if(indice == +1) listaUl.scrollBy(posicaoXDireita, 0)
     if(indice == -1) listaUl.scrollBy(posicaoXEsquerda, 0)
 }
@@ -28,7 +24,7 @@ let iframeVideo = document.querySelector('#iframeVideo')
 
 function abrirModal(videoId){
     location.href = '#abrirModal'
-    iframeVideo.setAttribute('src', `https://www.youtube.com/embed/${videoId}`)
+    iframeVideo.setAttribute('src',`http://www.youtube.com/embed/${videoId}`)
 }
 const url = 'videos.json'
 function pegarDados(){
@@ -48,7 +44,6 @@ let ul3 = document.querySelector('#lista3')
 let ul4 = document.querySelector('#lista4')
 let ul5 = document.querySelector('#lista5')
 let ul6 = document.querySelector('#lista6')
-
 let titulosCategorias = document.querySelectorAll('.tituloCategoria')
 
 function pegarDadosPorCategoria(categoriaId, lista){
@@ -80,7 +75,7 @@ function criarLiImg(categoriaId, idVideo, nLista){
     let item = document.createElement('li')
     lista.appendChild(item)
     let imagem = document.createElement('img')
-    imagem.setAttribute('src',`https://img.youtube.com/vi/${idVideo}/maxresdefault.jpg`)
+    imagem.setAttribute('src', `https://img.youtube.com/vi/${idVideo}/maxresdefault.jpg`)
     imagem.setAttribute('class','capa-thumb')
     imagem.setAttribute('onClick',`abrirModal("${idVideo}")`)
     item.appendChild(imagem)
