@@ -33,9 +33,9 @@ function pegarDados(){
     .then(dados => {
         console.log(dados)
         let qtdDeVideosJson = dados.videos.length
-        console.log('quantidade de videos '+qtdDeVideosJson)
+        console.log('videos JSON: '+qtdDeVideosJson)
         let qtdDeCategorias = dados.categorias.length
-        console.log('quantidade de categorias '+qtdDeCategorias)
+        console.log('quantidade de categorias: '+qtdDeCategorias)
     })
 }
 let ul1 = document.querySelector('#lista1')
@@ -44,7 +44,8 @@ let ul3 = document.querySelector('#lista3')
 let ul4 = document.querySelector('#lista4')
 let ul5 = document.querySelector('#lista5')
 let ul6 = document.querySelector('#lista6')
-let titulosCategorias = document.querySelectorAll('.tituloCategoria')
+
+let titulosCategoria = document.querySelectorAll('.tituloCategoria')
 
 function pegarDadosPorCategoria(categoriaId, lista){
     fetch(url)
@@ -52,7 +53,7 @@ function pegarDadosPorCategoria(categoriaId, lista){
     .then(dados => {
         let quantDeVideos = dados.videos.length
         let indiceAtual = categoriaId-1
-        titulosCategorias[indiceAtual].textContent = dados.categorias[indiceAtual].titulo
+        titulosCategoria[indiceAtual].textContent = dados.categorias[indiceAtual].titulo
         for(let y = 0; y < quantDeVideos; y++){
             if(dados.videos[y].categoriaId == categoriaId){
                 criarLiImg(categoriaId, dados.videos[y].videoId, lista)
@@ -75,7 +76,7 @@ function criarLiImg(categoriaId, idVideo, nLista){
     let item = document.createElement('li')
     lista.appendChild(item)
     let imagem = document.createElement('img')
-    imagem.setAttribute('src', `https://img.youtube.com/vi/${idVideo}/maxresdefault.jpg`)
+    imagem.setAttribute('src', `https://img.youtube.com/vi/${idVideo}/masresdefault.jpg`)
     imagem.setAttribute('class','capa-thumb')
     imagem.setAttribute('onClick',`abrirModal("${idVideo}")`)
     item.appendChild(imagem)
