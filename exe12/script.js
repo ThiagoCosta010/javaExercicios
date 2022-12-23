@@ -13,49 +13,43 @@ longitude.style.left = (window.innerWidth-5)/2+"px"
 let posicaoInicialLatitude = latitude.offsetTop
 let posicaoInicialLongitude = longitude.offsetLeft
 
-function moverLatitude(lat, direcao) {
-    // indice usado para mover a div para o Norte (-) ou para o Sul (+)
+function moverLatitude(lat, direcao){
     let indice = 2.4
-
-    if (lat < 30) {
+    if(lat < 30){
         indice = 2.5
-    } else if (lat <= 40) {
+    }else if(lat <= 40){
         indice = 2.6
-    } else if (lat <= 50) {
+    }else if(lat <= 50){
         indice = 2.7
-    } else if (lat <= 60) {
+    }else if(lat <= 60){
         indice = 2.8
-    } else if (lat <= 70) {
+    }else if(lat <= 70){
         indice = 2.9
-    } else if (lat <= 90) {
+    }else if(lat <= 90){
         indice = 3.1
-    } else if (lat > 90 || lat < 0) {
+    }else if(lat > 90 || lat < 0){
         console.log('Latitude inválida')
         return
-    } else {
+    }else{
         indice = 2.4
     }
-            
     let posIniLat = 0
     if(direcao == 'N') posIniLat = posicaoInicialLatitude - indice * lat
     if(direcao == 'S') posIniLat = posicaoInicialLatitude + indice * lat
-    latitude.style.top = posIniLat+"px"    
+    latitude.style.top = posIniLat+'px'
 }
-
-function moverLongitude(lon, direcao) {
-    // indice usado para mover a div para o Leste (+) ou para o Oeste (-)
+function moverLongitude(lon, direcao){
     let indice = 2.4
-    if(lon <= 30) {
+    if(lon <= 30){
         indice = 2.5
-    } else if (lon < 0 || lon > 180) {
+    }else if(lon < 0 || lon > 180){
         console.log('Longitude inválida')
         return
     }
-
     let posIniLon = 0
-    if(direcao == 'E') posIniLon = posicaoInicialLongitude + indice * lon
-    if(direcao == 'O') posIniLon = posicaoInicialLongitude - indice * lon
-    longitude.style.left = posIniLon+"px"    
+    if(direcao == 'E') posIniLon = posicaoInicialLongitude + indice * lat
+    if(direcao == 'O') posIniLon = posicaoInicialLongitude - indice * lat
+    longitude.style.left = posIniLon+'px'
 }
 
 let lat1 = document.querySelector('#lat1')
