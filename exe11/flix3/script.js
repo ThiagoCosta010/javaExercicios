@@ -46,7 +46,7 @@ function pegarDadosPorCategoria(categoriaId, lista){
         titulosCategoria[indiceAtual].textContent = dados.categorias[indiceAtual].titulo
         for(let y = 0; y < qtdDeVideos; y++){
             if(dados.videos[y].categoriaId == categoriaId){
-                criarLiImg(categoriaId, dados.videos[y].videoId, lista)
+                crirLiImg(categoriaId, dados.videos[y].videoId, lista)
             }
         }
     })
@@ -61,13 +61,13 @@ pegarDadosPorCategoria(6, ul6)
 function dadosPorCategoria(categoria){
     console.log(categoria)
 }
-function criarLiImg(categoriaId, idVideo, nLista){
+function crirLiImg(categoriaId, idVideo, nLista){
     let lista = nLista
     let item = document.createElement('li')
     lista.appendChild(item)
     let imagem = document.createElement('img')
-    imagem.setAttribute('src',`https://img.youtube.com/vi/${idVideo}/maxresdefault.jpg`)
-    imagem.setAttribute('class','capa-thumb')
-    imagem.setAttribute('onClick',`abrirModal("${idVideo}")`)
-    item.appendChild(imagem )
+    imagem.setAttribute('src', `https://img.youtube.com/vi/${idVideo}/maxresdefault.jpg`)
+    imagem.setAttribute('class', `capa-thumb`)
+    imagem.setAttribute('onClick', `abrirModal("${idVideo}")`)
+    item.appendChild(imagem)
 }
