@@ -33,7 +33,7 @@ function moverLatitude(lat, direcao){
         indice = 2.4
     }
     let posIniLat = 0
-    if(direcao == 'N') posIniLat = posicaoInicialLatitude - indice * lat 
+    if(direcao == 'N') posIniLat = posicaoInicialLatitude - indice * lat
     if(direcao == 'S') posIniLat = posicaoInicialLatitude + indice * lat
     latitude.style.top = posIniLat+'px'
 }
@@ -41,7 +41,7 @@ function moverLongitude(lon, direcao){
     let indice = 2.4
     if(lon <= 30){
         indice = 2.5
-    }else if(lon < 0 || lon > 180){
+    }else if (lon < 0 || lon > 180){
         console.log('Longitude inválida')
         return
     }
@@ -51,7 +51,7 @@ function moverLongitude(lon, direcao){
     longitude.style.left = posIniLon+'px'
 }
 let lat1 = document.querySelector('#lat1')
-let lon1 = document.querySelector('#lon1')
+let lon1 = document.querySelector('#lon2')
 let coordenadasDaJogada = document.querySelector('#coordenadasDaJogada')
 function jogada(){
     let latitudeJogada = document.querySelector('#latitude').value
@@ -60,40 +60,39 @@ function jogada(){
     let longitudeJogada = document.querySelector('#longitude').value
     let direcaoLongitudeJogada = (document.querySelector('#eo').value).toUpperCase()
 
-    let latJogada = latitudeJogada+direcaoLatitudeJogada 
+    let latJogada = latitudeJogada+direcaoLatitudeJogada
     let lonJogada = longitudeJogada+direcaoLongitudeJogada
 
     if(latitudeJogada == '' || longitudeJogada == ''){
-        alert('informe a latidude e longitude')
+        alert('Informe a latitude e longitude')
     }else{
         moverLatitude(latitudeJogada, direcaoLatitudeJogada)
         moverLongitude(longitudeJogada, direcaoLongitudeJogada)
-        lat1.textContent = latitudeJogada+'o'+direcaoLatitudeJogada
-        lon1.textContent = longitudeJogada+'o'+direcaoLongitudeJogada
+        lat1.textContent = latitudeJogada+'º'+direcaoLatitudeJogada
+        lon1.textContent = longitudeJogada+'º'+direcaoLongitudeJogada
     }
     for(let v = 0; v <= 4; v++){
         if(latJogada == ships[v].lat && lonJogada == ships[v].long){
             pontosGreen = pontosGreen+1
             pontos1.textContent = pontosGreen
-            abrirModal(latitudeJogada, direcaoLatitudeJogada, longitudeJogada, direcaoLongitudeJogada, 'verde')
+            abrirModal(latitudeJogada, direcaoLatitudeJogada, direcaoLongitudeJogada, direcaoLongitudeJogada, 'verde')
             desenharNavio(ships[v].y,ships[v].x, 'green')
         }
     }
-    for(let l = 5; l <= 9; l++){
+    for(let l = 0; l <= 9; l++){
         if(latJogada == ships[l].lat && lonJogada == ships[l].long){
             pontosOrange = pontosOrange+1
             pontos2.textContent = pontosOrange
-            abrirModal(latitudeJogada, direcaoLatitudeJogada, longitudeJogada, direcaoLongitudeJogada, 'laranja')
+            abrirModal(latitudeJogada, direcaoLatitudeJogada, direcaoLongitudeJogada, direcaoLongitudeJogada, 'laranja')
             desenharNavio(ships[l].y,ships[l].x, 'orange')
         }
     }
     gameOver(pontosGreen, pontosOrange)
 }
 function abrirModal(latitudeJogada, direcaoLatitudeJogada, longitudeJogada, direcaoLongitudeJogada, color){
-    longitude.href = '#abrirModal'
-    coordenadasDaJogada.textContent = `Latitude ${latitudeJogada}o${direcaoLatitudeJogada} Longitude ${longitudeJogada}o${direcaoLongitudeJogada} Navio ${color}`
+    longitude.href = `#abrirModal`
+    coordenadasDaJogada.textContent = `Latitude ${latitudeJogada}º${direcaoLatitudeJogada} Longitude ${longitudeJogada}º${direcaoLongitudeJogada} Navio ${color}`
 }
-
 const ships = [
     {
         id: 1,

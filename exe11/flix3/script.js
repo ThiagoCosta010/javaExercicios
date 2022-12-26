@@ -22,11 +22,10 @@ function pegarDados(){
     fetch(url)
     .then(response => response.json())
     .then(dados => {
-        console.log(dados)
-        let quantDeVideosJson = dados.videos.length
-        console.log('videos JSON '+quantDeVideosJson)
-        let quantDeCategorias = dados.categorias.length
-        console.log('quantidade de categoria '+quantDeCategorias)
+        let qtdDeVideosJson = dados.videos.length
+        console.log('total de videos Json: '+qtdDeVideosJson)
+        let qtdDeCategorias = dados.categorias.length
+        console.log('total de categorias: '+qtdDeCategorias)
     })
 }
 let ul1 = document.querySelector('#lista1')
@@ -37,6 +36,7 @@ let ul5 = document.querySelector('#lista5')
 let ul6 = document.querySelector('#lista6')
 
 let titulosCategoria = document.querySelectorAll('.tituloCategoria')
+
 function pegarDadosPorCategoria(categoriaId, lista){
     fetch(url)
     .then(response => response.json())
@@ -46,7 +46,7 @@ function pegarDadosPorCategoria(categoriaId, lista){
         titulosCategoria[indiceAtual].textContent = dados.categorias[indiceAtual].titulo
         for(let y = 0; y < qtdDeVideos; y++){
             if(dados.videos[y].categoriaId == categoriaId){
-                crirLiImg(categoriaId, dados.videos[y].videoId, lista)
+                criarLiImg(categoriaId, dados.videos[y].videoId, lista)
             }
         }
     })
@@ -61,13 +61,13 @@ pegarDadosPorCategoria(6, ul6)
 function dadosPorCategoria(categoria){
     console.log(categoria)
 }
-function crirLiImg(categoriaId, idVideo, nLista){
+function criarLiImg(categoriaId, idVideo, nLista){
     let lista = nLista
     let item = document.createElement('li')
     lista.appendChild(item)
     let imagem = document.createElement('img')
     imagem.setAttribute('src', `https://img.youtube.com/vi/${idVideo}/maxresdefault.jpg`)
-    imagem.setAttribute('class', `capa-thumb`)
-    imagem.setAttribute('onClick', `abrirModal("${idVideo}")`)
+    imagem.setAttribute('class','capa-thumb')
+    imagem.setAttribute('onClick',`abrirModal("${idVideo}")`)
     item.appendChild(imagem)
 }
