@@ -56,11 +56,10 @@ let coordenadasDaJogada = document.querySelector('#coordenadasDaJogada')
 function jogada(){
     let latitudeJogada = document.querySelector('#latitude').value
     let direcaoLatitudeJogada = (document.querySelector('#ns').value).toUpperCase()
-
     let longitudeJogada = document.querySelector('#longitude').value
     let direcaoLongitudeJogada = (document.querySelector('#eo').value).toUpperCase()
 
-    let latJogada = latitudeJogada+direcaoLatitudeJogada
+    let latJogada = latitudeJogada+direcaoLatitudeJogada 
     let lonJogada = longitudeJogada+direcaoLongitudeJogada
 
     if(latitudeJogada == '' || longitudeJogada == ''){
@@ -75,7 +74,7 @@ function jogada(){
         if(latJogada == ships[v].lat && lonJogada == ships[v].long){
             pontosGreen = pontosGreen+1
             pontos1.textContent = pontosGreen
-            abrirModal(latitudeJogada, direcaoLatitudeJogada, direcaoLongitudeJogada, direcaoLongitudeJogada, 'verde')
+            abrirModal(latitudeJogada, direcaoLatitudeJogada, longitudeJogada, direcaoLongitudeJogada, 'verde')
             desenharNavio(ships[v].y,ships[v].x, 'green')
         }
     }
@@ -83,7 +82,7 @@ function jogada(){
         if(latJogada == ships[l].lat && lonJogada == ships[l].long){
             pontosOrange = pontosOrange+1
             pontos2.textContent = pontosOrange
-            abrirModal(latitudeJogada, direcaoLatitudeJogada, direcaoLongitudeJogada, direcaoLongitudeJogada, 'laranja')
+            abrirModal(latitudeJogada, direcaoLatitudeJogada, longitudeJogada, direcaoLongitudeJogada, 'laranja')
             desenharNavio(ships[l].y,ships[l].x, 'orange')
         }
     }

@@ -13,11 +13,9 @@ let lista5 = document.querySelectorAll('#lista5 li')
 */
 let numDeItems = 5
 
-let lista = []
-for(let x = 1; x <= numDeLista; x++){
-    lista[x] = document.querySelectorAll('#lista'+x+' li')
+for(let x = 1; x <= numDeItems; x++){
+    lista[x] = document.querySelector('#lista'+x+ 'li')
 }
-
 /*
 numDeVideos[0].textContent = lista1.length
 numDeVideos[1].textContent = lista2.length
@@ -25,8 +23,7 @@ numDeVideos[2].textContent = lista3.length
 numDeVideos[3].textContent = lista4.length
 numDeVideos[4].textContent = lista5.length
 */
-let numDeVideos = document.querySelectorAll('.numDeVideos')
-
+let numDeVideos = document.querySelector('.numDeVideos')
 for(let y = 0; y <= numDeLista; y++){
     numDeVideos[y].textContent = lista[y+1].length
 }
