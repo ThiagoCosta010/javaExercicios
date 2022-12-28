@@ -58,12 +58,11 @@ function jogada(){
     let direcaoLatitudeJogada = (document.querySelector('#ns').value).toUpperCase()
     let longitudeJogada = document.querySelector('#longitude').value
     let direcaoLongitudeJogada = (document.querySelector('#eo').value).toUpperCase()
-
-    let latJogada = latitudeJogada+direcaoLatitudeJogada 
+    let latJogada = latitudeJogada+direcaoLatitudeJogada
     let lonJogada = longitudeJogada+direcaoLongitudeJogada
 
     if(latitudeJogada == '' || longitudeJogada == ''){
-        alert('Informe a latitude e longitude')
+        alert('informe a latitude e longitude')
     }else{
         moverLatitude(latitudeJogada, direcaoLatitudeJogada)
         moverLongitude(longitudeJogada, direcaoLongitudeJogada)
@@ -74,7 +73,7 @@ function jogada(){
         if(latJogada == ships[v].lat && lonJogada == ships[v].long){
             pontosGreen = pontosGreen+1
             pontos1.textContent = pontosGreen
-            abrirModal(latitudeJogada, direcaoLatitudeJogada, longitudeJogada, direcaoLongitudeJogada, 'verde')
+            abrirModal(latitudeJogada,direcaoLatitudeJogada,longitudeJogada,direcaoLongitudeJogada, 'verde')
             desenharNavio(ships[v].y,ships[v].x, 'green')
         }
     }
@@ -82,14 +81,14 @@ function jogada(){
         if(latJogada == ships[l].lat && lonJogada == ships[l].long){
             pontosOrange = pontosOrange+1
             pontos2.textContent = pontosOrange
-            abrirModal(latitudeJogada, direcaoLatitudeJogada, longitudeJogada, direcaoLongitudeJogada, 'laranja')
+            abrirModal(latitudeJogada,direcaoLatitudeJogada,longitudeJogada,direcaoLongitudeJogada, 'laranja')
             desenharNavio(ships[l].y,ships[l].x, 'orange')
         }
     }
     gameOver(pontosGreen, pontosOrange)
 }
 function abrirModal(latitudeJogada, direcaoLatitudeJogada, longitudeJogada, direcaoLongitudeJogada, color){
-    longitude.href = `#abrirModal`
+    longitude.href = '#abrirModal'
     coordenadasDaJogada.textContent = `Latitude ${latitudeJogada}º${direcaoLatitudeJogada} Longitude ${longitudeJogada}º${direcaoLongitudeJogada} Navio ${color}`
 }
 const ships = [
