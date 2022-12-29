@@ -177,7 +177,7 @@ const ships = [
 let articleMapa = document.querySelector('#articleMapa')
 function desenharNavio(posicaoY, posicaoX, cor){
     let navio = document.createElement('img')
-    navio.setAttribute('src', `img/navio-${cor}.png`)
+    navio.setAttribute('src',`img/navio-${cor}.png`)
     navio.setAttribute('width','25px')
     navio.style.position = 'absolute'
     navio.style.top = posicaoY+'px'
@@ -185,9 +185,9 @@ function desenharNavio(posicaoY, posicaoX, cor){
     articleMapa.appendChild(navio)
 }
 let coordenadas = document.querySelector('#coordenada')
-let posicaoDoClick  
+let posicaoDoClick
 articleMapa.addEventListener('click', pegaPosicao, true)
-function pegaPosicao(e) {
+function pegaPosicao(e){
     posicaoDoClick = {x: e.pageX, y: e.pageY}
     coordenadas.textContent = posicaoDoClick.x + 'x' + posicaoDoClick.y
 }
