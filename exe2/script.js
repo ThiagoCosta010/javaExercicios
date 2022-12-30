@@ -12,13 +12,13 @@ function calcularMedia(n1,n2){
 }
 function situacaoFinal(nota){
     let situacaoFinal = ''
-    if(nota >= 7){
+    if(nota > 7){
         situacaoFinal = 'Aprovado(a)'
-    }else if(nota <= 3){
+    }else if (nota < 4){
         situacaoFinal = 'Reprovado(a)'
-    }else{
-        situacaoFinal = 'Recuperação'
-    }
+    }else[
+        situacaoFinal = 'Recuperacao'
+    ]
     return situacaoFinal
 }
 function formatarSituacao(situacaoFinal){
@@ -32,28 +32,30 @@ function formatarSituacao(situacaoFinal){
             cxSituacao.classList.remove('aprovado')
             cxSituacao.classList.remove('recuperacao')
             cxSituacao.classList.add('reprovado')
-            break    
-        case 'Recuperação':
+            break
+        case 'Recuperacao':
             cxSituacao.classList.remove('aprovado')
             cxSituacao.classList.remove('reprovado')
             cxSituacao.classList.add('recuperacao')
-            break         
+            break
+        default:
+            return
     }
 }
 function validarNumero(numero){
-    let num1 = cxNota1.value
-    let num2 = cxNota2.value
-    if(num1 > 10 || num1 < 0 || num2 < 0 || num2 > 10){
+    let num1 = parseFloat(cxNota1.value)
+    let num2 = parseFloat(cxNota2.value)
+    if(num1 < 0 || num1 > 10 || num2 < 0 || num2 > 10){
         cxSituacao.value = ''
         aviso.classList.add('alerta')
         aviso.textContent = 'Digite um número entre 1 e 10'
-        setTimeout(function() {
+        setTimeout(() => {
             aviso.classList.remove('alerta')
             aviso.textContent = ''
         }, 2000)
     }
 }
-btnCalcular.addEventListener('click',function(e) {
+btnCalcular.addEventListener('click', (e) => {
     let nota1 = parseFloat(cxNota1.value)
     let nota2 = parseFloat(cxNota2.value)
     let media = calcularMedia(nota1, nota2)
@@ -66,7 +68,7 @@ btnCalcular.addEventListener('click',function(e) {
     }
     e.preventDefault()
 })
-btnLimpar.addEventListener('click',function() {
+btnLimpar.addEventListener('click', () => {
     cxSituacao.classList.remove('aprovado')
     cxSituacao.classList.remove('reprovado')
     cxSituacao.classList.remove('recuperacao')

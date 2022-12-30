@@ -9,8 +9,8 @@ let dados = document.querySelectorAll('.pessoa')
 let btnEnviar = document.querySelector('#btnEnviar')
 let btnLimpar = document.querySelector('#btnLimpar')
 
-btnEnviar.addEventListener('click',function(e) {
-    let nome = cxNome.value 
+btnEnviar.addEventListener('click',(e) => {
+    let nome = cxNome.value
     let idade = cxIdade.value
     let peso = cxPeso.value
     let altura = cxAltura.value
@@ -19,7 +19,7 @@ btnEnviar.addEventListener('click',function(e) {
     cxImc.value = imc
     let sit = situacaoDoPeso(imc)
     aviso.textContent = sit
-
+    
     let pessoa = {
         nome : nome,
         idade : idade,
