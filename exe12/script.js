@@ -178,7 +178,7 @@ let articleMapa = document.querySelector('#articleMapa')
 function desenharNavio(posicaoY, posicaoX, cor){
     let navio = document.createElement('img')
     navio.setAttribute('src',`img/navio-${cor}.png`)
-    navio.setAttribute('width','25px')
+    navio.setAttribute('width',`25px`)
     navio.style.position = 'absolute'
     navio.style.top = posicaoY+'px'
     navio.style.left = posicaoX-12.5+'px'
@@ -190,7 +190,7 @@ articleMapa.addEventListener('click', pegaPosicao, true)
 function pegaPosicao(e){
     posicaoDoClick = {x: e.pageX, y: e.pageY}
     coordenadas.textContent = posicaoDoClick.x + 'x' + posicaoDoClick.y
-}
+} 
 const posicaoLongitudes = [
     // oeste
 // 180O 160O 140O 120O 100O  80O  60O  40O  20O
