@@ -71,17 +71,17 @@ function jogada(){
     }
     for(let v = 0; v <= 4; v++){
         if(latJogada == ships[v].lat && lonJogada == ships[v].long){
-            pontosGreen = pontosGreen+1
+            pontosGreen = pontosGreen + 1
             pontos1.textContent = pontosGreen
-            abrirModal(latitudeJogada,direcaoLatitudeJogada,longitudeJogada,direcaoLongitudeJogada, 'verde')
+            abrirModal(latitudeJogada,direcaoLatitudeJogada, longitudeJogada, direcaoLongitudeJogada, 'verde')
             desenharNavio(ships[v].y,ships[v].x, 'green')
         }
     }
     for(let l = 0; l <= 9; l++){
         if(latJogada == ships[l].lat && lonJogada == ships[l].long){
-            pontosOrange = pontosOrange+1
+            pontosOrange = pontosOrange + 1
             pontos2.textContent = pontosOrange
-            abrirModal(latitudeJogada,direcaoLatitudeJogada,longitudeJogada,direcaoLongitudeJogada, 'laranja')
+            abrirModal(latitudeJogada,direcaoLatitudeJogada, longitudeJogada, direcaoLongitudeJogada, 'laranja')
             desenharNavio(ships[l].y,ships[l].x, 'orange')
         }
     }
@@ -173,12 +173,11 @@ const ships = [
         x: 396
     }
 ]
-
 let articleMapa = document.querySelector('#articleMapa')
 function desenharNavio(posicaoY, posicaoX, cor){
     let navio = document.createElement('img')
-    navio.setAttribute('src',`img/navio-${cor}.png`)
-    navio.setAttribute('width',`25px`)
+    navio.setAttribute('src', `img/navio-${cor}.png`)
+    navio.setAttribute('width','25px')
     navio.style.position = 'absolute'
     navio.style.top = posicaoY+'px'
     navio.style.left = posicaoX-12.5+'px'
@@ -190,7 +189,7 @@ articleMapa.addEventListener('click', pegaPosicao, true)
 function pegaPosicao(e){
     posicaoDoClick = {x: e.pageX, y: e.pageY}
     coordenadas.textContent = posicaoDoClick.x + 'x' + posicaoDoClick.y
-} 
+}
 const posicaoLongitudes = [
     // oeste
 // 180O 160O 140O 120O 100O  80O  60O  40O  20O

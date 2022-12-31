@@ -20,16 +20,16 @@ function bloquearBtnChutar(){
 function ativarBtnChutar(){
     btnChutar.removeAttribute('disabled')
     btnChutar.style.background = '#222'
-    btnChutar.style.cursor = 'pointer' 
+    btnChutar.style.cursor = 'pointer'
 }
 function validarNumeroDigitado(numero){
     if(numero <= 0 || numero > 10){
         aviso.classList.add('errou')
-        mensagemRapida('Digite um valor entre 1 e 10')
-        bloquearBtnChutar()
+        mensagemRapida('Digite um número entre 1 e 10')
         inputNumero.value = ''
+        bloquearBtnChutar()
     }else{
-        console.log('número valido')
+        console.log('número válido')
     }
 }
 function jogar(){
@@ -45,24 +45,24 @@ function ativarDesativarMusica(){
         musica.muted = true
     }
 }
-function pausarMusicaDeFundo(){
+function pausarMusica(){
     musica.pause()
     musica.currentTime = 0
 }
 function mensagemRapida(mensagem){
     aviso.textContent = mensagem
-    setTimeout(function() {
+    setTimeout(() => {
         aviso.classList.remove('errou')
         aviso.classList.remove('acertou')
-        aviso.textContent = ''
         inputNumero.value = ''
+        aviso.textContent = ''
     }, 2000)
 }
 function gameOver(situacao){
     switch(situacao){
         case 'Acertou':
             aviso.classList.add('acertou')
-            mensagemRapida('Você acertou, o número secreto era: '+numeroSecreto)
+            mensagemRapida('Você acertou, número secreto era '+numeroSecreto)
             break
         case 'Chute Maior':
             aviso.classList.add('errou')
@@ -71,9 +71,9 @@ function gameOver(situacao){
         case 'Chute Menor':
             aviso.classList.add('errou')
             mensagemRapida('Chute menor que o número secreto')
-            break    
+            break
         default:
-            console.log('Chute indefinido')
+            console.log('chute errado')
     }
 }
 function verificarSeAcertou(){
@@ -82,13 +82,13 @@ function verificarSeAcertou(){
         situacao = 'Acertou'
         gameOver(situacao)
         gerarNumeroSecreto()
-    }else if(chute > numeroSecreto){
+    }else if (chute > numeroSecreto){
         situacao = 'Chute Maior'
         gameOver(situacao)
-    }else if(chute < numeroSecreto){
+    }else if (chute < numeroSecreto){
         situacao = 'Chute Menor'
         gameOver(situacao)
     }else{
-        console.log('Impossível verificar se acertou')
+        console.log('chute indefinido')
     }
 }
