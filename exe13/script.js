@@ -18,8 +18,6 @@ const criarItem = (tarefa, status, indice) => {
 const limparTarefas = () => {
     const todoList = document.getElementById('todoList')
 
-    // enquanto todoList tiver um primeiro filho
-    // remova o ultimo filho que foi adicionado ao todoList
     while (todoList.firstChild) {todoList.removeChild(todoList.lastChild)}
 }
 const atualizarTela = () => {
@@ -29,7 +27,7 @@ const atualizarTela = () => {
 }
 const inserirItem = (evento) => {
     const tecla = evento.key
-    const texto =evento.target.value
+    const texto = evento.target.value
     if(tecla == 'Enter'){
         const banco = getBanco()
         banco.push({'tarefa': texto, 'status': ''})
@@ -40,8 +38,7 @@ const inserirItem = (evento) => {
 }
 const removerItem = (indice) => {
     const banco = getBanco()
-    banco.splice (indice, 1)
-
+    banco.splice(indice, 1)
     setBanco(banco)
     atualizarTela()
 }
@@ -56,7 +53,7 @@ const clickItem = (evento) => {
     if(elemento.type === 'button'){
         const indice = elemento.dataset.indice
         removerItem(indice)
-    }else if(elemento.type === 'checkbox'){
+    }else if (elemento.type === 'checkbox'){
         const indice = elemento.dataset.indice
         atualizarItem(indice)
     }
