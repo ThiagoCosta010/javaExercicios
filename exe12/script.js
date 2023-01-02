@@ -73,7 +73,7 @@ function jogada(){
         if(latJogada == ships[v].lat && lonJogada == ships[v].long){
             pontosGreen = pontosGreen + 1
             pontos1.textContent = pontosGreen
-            abrirModal(latitudeJogada,direcaoLatitudeJogada, longitudeJogada, direcaoLongitudeJogada, 'verde')
+            abrirModal(latitudeJogada, direcaoLatitudeJogada, longitudeJogada, direcaoLongitudeJogada, 'verde')
             desenharNavio(ships[v].y,ships[v].x, 'green')
         }
     }
@@ -81,7 +81,7 @@ function jogada(){
         if(latJogada == ships[l].lat && lonJogada == ships[l].long){
             pontosOrange = pontosOrange + 1
             pontos2.textContent = pontosOrange
-            abrirModal(latitudeJogada,direcaoLatitudeJogada, longitudeJogada, direcaoLongitudeJogada, 'laranja')
+            abrirModal(latitudeJogada, direcaoLatitudeJogada, longitudeJogada, direcaoLongitudeJogada, 'laranja')
             desenharNavio(ships[l].y,ships[l].x, 'orange')
         }
     }

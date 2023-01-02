@@ -4,7 +4,6 @@ let banco = []
 
 // armazenar em constante array function que retorna os valores da chave 'todoList'
 const getBanco = () => JSON.parse(localStorage.getItem('todoList')) ?? []
-
 // armazenar em constante array function que define um valor da chave 'tarefa' do nosso 'todoList'
 const setBanco = (banco) => localStorage.setItem('todoList', JSON.stringify(banco))
 
@@ -20,20 +19,19 @@ const criarItem = (tarefa, status, indice) => {
 }
 const limparTarefas = () => {
     const todoList = document.getElementById('todoList')
-
-    while (todoList.firstChild) {todoList.removeChild(todoList.lastChild)}
+    while(todoList.firstChild) {todoList.removeChild(todoList.lastChild)}
 }
 const atualizarTela = () => {
     limparTarefas()
     const banco = getBanco()
-    banco.forEach ((item, indice) => criarItem (item.tarefa, item.status, indice))
+    banco.forEach = ((item, indice) => criarItem (item.tarefa, item.status, indice))
 }
 const inserirItem = (evento) => {
     const tecla = evento.key
     const texto = evento.target.value
     if(tecla == 'Enter'){
         const banco = getBanco()
-        banco.push({'tarefa': texto, 'status': ''})
+        banco.push({'tarefa': texto, 'status' : ''})
         setBanco(banco)
         atualizarTela()
         evento.target.value = ''
@@ -56,7 +54,7 @@ const clickItem = (evento) => {
     if(elemento.type === 'button'){
         const indice = elemento.dataset.indice
         removerItem(indice)
-    }else if (elemento.type === 'checkbox'){
+    }else if(elemento.type === 'checkbox'){
         const indice = elemento.dataset.indice
         atualizarItem(indice)
     }
