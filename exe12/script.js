@@ -254,7 +254,7 @@ function gameOver(pontosGreen, pontosOrange){
         atualizarPagina()
     }
     if(pontosOrange >= 5){
-        aviso.textContent = 'Equipe Verde encontrou os 5 navios laranja de pirataria'
+        aviso.textContent = 'Equipe verde encontrou os 5 navios laranja de pesca ilegal'
         location.href = '#abrirModal2'
         atualizarPagina()
     }
