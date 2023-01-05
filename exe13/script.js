@@ -16,6 +16,7 @@ const criarItem = (tarefa, status, indice) => {
         <input type="button" value="X" data-indice=${indice}>
     `
     document.getElementById('todoList').appendChild(item)
+
 }
 const limparTarefas = () => {
     const todoList = document.getElementById('todoList')
@@ -54,12 +55,11 @@ const clickItem = (evento) => {
     if(elemento.type === 'button'){
         const indice = elemento.dataset.indice
         removerItem(indice)
-    }else if(elemento.type === 'checkbox'){
+    }else if (elemento.type === 'checkbox'){
         const indice = elemento.dataset.indice
         atualizarItem(indice)
     }
 }
 document.getElementById('newItem').addEventListener('keypress', inserirItem)
 document.getElementById('todoList').addEventListener('click', clickItem)
-
 atualizarTela()
