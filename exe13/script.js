@@ -25,7 +25,7 @@ const limparTarefas = () => {
 const atualizarTela = () => {
     limparTarefas()
     const banco = getBanco()
-    banco.forEach = ((item, indice) => criarItem (item.tarefa, item.status, indice))
+    banco.forEach ((item, indice) => criarItem (item.tarefa, item.status, indice))
 }
 const inserirItem = (evento) => {
     const tecla = evento.key
