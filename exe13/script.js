@@ -13,13 +13,13 @@ const criarItem = (tarefa, status, indice) => {
     item.innerHTML = `
         <input type="checkbox" ${status} data-indice=${indice}>
         <div>${tarefa}</div>
-        <input type="button" value="X" data-indice=${indice}>
+        <input type="button" value="X" data-indice=${indice} >
     `
     document.getElementById('todoList').appendChild(item)
 }
 const limparTarefas = () => {
     const todoList = document.getElementById('todoList')
-    while(todoList.firstChild) {todoList.removeChild(todoList.lastChild)}
+    while (todoList.firstChild) {todoList.removeChild(todoList.lastChild)}
 }
 const atualizarTela = () => {
     limparTarefas()
@@ -31,7 +31,7 @@ const inserirItem = (evento) => {
     const texto = evento.target.value
     if(tecla == 'Enter'){
         const banco = getBanco()
-        banco.push({'tarefa': texto, 'status' : ''})
+        banco.push({'tarefa':  texto, 'status' : ''})
         setBanco(banco)
         atualizarTela()
         evento.target.value = ''
