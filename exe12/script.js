@@ -91,6 +91,7 @@ function abrirModal(latitudeJogada, direcaoLatitudeJogada, longitudeJogada, dire
     longitude.href = '#abrirModal'
     coordenadasDaJogada.textContent = `Latitude ${latitudeJogada}º${direcaoLatitudeJogada} Longitude ${longitudeJogada}º${direcaoLongitudeJogada} Navio ${color}`
 }
+
 const ships = [
     {
         id: 1,

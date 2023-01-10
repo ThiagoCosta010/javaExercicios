@@ -5,7 +5,7 @@ let banco = []
 // armazenar em constante array function que retorna os valores da chave 'todoList'
 const getBanco = () => JSON.parse(localStorage.getItem('todoList')) ?? []
 // armazenar em constante array function que define um valor da chave 'tarefa' do nosso 'todoList'
-const setBanco = (banco) => localStorage.setItem('todoList', JSON.stringify(banco))
+const setBanco = (banco) => localStorage.setItem('todoList',JSON.stringify(banco))
 
 const criarItem = (tarefa, status, indice) => {
     const item = document.createElement('label')
@@ -13,7 +13,7 @@ const criarItem = (tarefa, status, indice) => {
     item.innerHTML = `
         <input type="checkbox" ${status} data-indice=${indice}>
         <div>${tarefa}</div>
-        <input type="button" value="X" data-indice=${indice} >
+        <input type="button" value="X" data-indice=${indice}>
     `
     document.getElementById('todoList').appendChild(item)
 }
@@ -31,7 +31,7 @@ const inserirItem = (evento) => {
     const texto = evento.target.value
     if(tecla == 'Enter'){
         const banco = getBanco()
-        banco.push({'tarefa':  texto, 'status' : ''})
+        banco.push({'tarefa': texto, 'status' : ''})
         setBanco(banco)
         atualizarTela()
         evento.target.value = ''
@@ -59,6 +59,6 @@ const clickItem = (evento) => {
         atualizarItem(indice)
     }
 }
-document.getElementById('newItem').addEventListener('keypress', inserirItem)
-document.getElementById('todoList').addEventListener('click', clickItem)
+document.getElementById('newItem').addEventListener('keypress',inserirItem)
+document.getElementById('todoList').addEventListener('click',clickItem)
 atualizarTela()
