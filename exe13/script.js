@@ -59,6 +59,6 @@ const clickItem = (evento) => {
         atualizarItem(indice)
     }
 }
-document.getElementById('newItem').addEventListener('keypress',inserirItem)
-document.getElementById('todoList').addEventListener('click',clickItem)
+document.getElementById('newItem').addEventListener('keypress', inserirItem)
+document.getElementById('todoList').addEventListener('click', clickItem)
 atualizarTela()
