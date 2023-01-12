@@ -73,7 +73,6 @@ let total = document.querySelector('#total')
 let numero = document.querySelector('#numero')
 
 numero.textContent = q1.numQuestao
-
 let totalDeQuestoes = (questoes.length) - 1
 total.textContent = totalDeQuestoes
 
@@ -110,16 +109,15 @@ function desbloquearAlternativas(){
 function verificarSeAcertou(nQuestao, resposta){
     let numeroDaQuestao = nQuestao.value
     let respostaEscolhida = resposta.textContent
-    let certa = questoes[numeroDaQuestao].correta
-    if(respostaEscolhida == certa){
+    let chute = questoes[numeroDaQuestao].correta
+    if(respostaEscolhida == chute){
         pontos += 10
     }
     placar = pontos
-    instrucoes.textContent = 'Placar '+pontos
+    instrucoes.textContent = 'Pontos '+placar
     bloquearAlternativas()
-    
-    setTimeout(function() {
-        proxima = numeroDaQuestao + 1
+    setTimeout(() => {
+        proxima = numeroDaQuestao+1
         if(proxima > totalDeQuestoes){
             fimDoJogo()
         }else{
@@ -129,27 +127,26 @@ function verificarSeAcertou(nQuestao, resposta){
     desbloquearAlternativas()
 }
 function fimDoJogo(){
-    instrucoes.textContent = 'Fim do jogo'
+    instrucoes.textContent = 'Fim do jogo!'
     numQuestao.textContent = ''
-
     let ponto = ''
-    pontos == 0 ? ponto = 'ponto' : ponto = 'pontos'
+    pontos === 0 ? ponto = 'ponto' : ponto = 'pontos'
 
-    aviso.textContent = 'Você terminou com ' +pontos+ ' ' +ponto
-    pergunta.textContent = 'Você terminou com ' +pontos+ ' ' +ponto
+    aviso.textContent = 'Fim do jogo! Você terminou com '+pontos+ ' '+ponto
+    pergunta.textContent = 'Fim do jogo! Você terminou com '+pontos+ ' '+ponto
 
     a.textContent = ''
     b.textContent = ''
     c.textContent = ''
 
-    a.setAttribute('value','')
-    b.setAttribute('value','')
-    c.setAttribute('value','')
+    a.setAttribute('value' , '')
+    b.setAttribute('value' , '')
+    c.setAttribute('value' , '')
 
     articleQuestoes.style.display = 'none'
 
     setTimeout(() => {
-        pontos = ''
+        pontos = 0
         location.reload()
     }, 2000)
 }

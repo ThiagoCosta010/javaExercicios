@@ -142,7 +142,7 @@ b.setAttribute('value', '1B')
 c.setAttribute('value', '1C')
 d.setAttribute('value', '1D')
 
-function proximaAlternativa(nQuestao){
+function proximaQuestao(nQuestao){
     numero.textContent = nQuestao
     numQuestao.textContent = questoes[nQuestao].numQuestao
     pergunta.textContent = questoes[nQuestao].pergunta
@@ -166,11 +166,11 @@ function bloquearAlternativas(){
 function desbloquearAlternativas(){
     alternativas.classList.remove('bloqueado')
 }
-function piscarNoAcertou(){
+function piscarNoAcerto(){
     alternativas.classList.remove('errou')
     alternativas.classList.add('acertou')
 }
-function piscarNoErro(){
+function piscarNoErrou(){
     alternativas.classList.remove('acertou')
     alternativas.classList.add('errou')
 }
@@ -178,31 +178,31 @@ function pararDePiscar(){
     alternativas.classList.remove('errou')
     alternativas.classList.remove('acertou')
 }
-function verificarSeAcertou(nQuestao, reposta){
+function verificarSeAcertou(nQuestao, resposta){
     let numeroDaQuestao = nQuestao.value
-    let repostaEscolhida = reposta.textContent
+    let respostaEscolhida = resposta.textContent
     let certa = questoes[numeroDaQuestao].correta
-    if(certa == repostaEscolhida){
+    if(certa === respostaEscolhida){
         pontos += 10
-        piscarNoAcertou()
         somAcerto.play()
-        if(nQuestao.value == 1 && pontos == 20) {pontos = 10}
+        piscarNoAcerto()
+        if(numQuestao.value == 1 && pontos == 20) {pontos = 10}
     }else{
         somErro.play()
-        piscarNoErro()
+        piscarNoErrou()
     }
     setTimeout(() => {
         pararDePiscar()
     }, 150)
     placar = pontos
-    instrucoes.textContent = 'Pontos '+placar
+    instrucoes.textContent = 'Pontos ' + placar
     bloquearAlternativas()
     setTimeout(() => {
-        proxima = numeroDaQuestao + 1
+        proxima = numeroDaQuestao+1
         if(proxima > totalDeQuestoes){
             fimDoJogo()
         }else{
-            proximaAlternativa(proxima)
+            proximaQuestao(proxima)
         }
     }, 150)
     desbloquearAlternativas()
@@ -212,8 +212,8 @@ function fimDoJogo(){
     let s = ''
     pontos == 0 ? s = '' : s = 's'
 
-    instrucoes.textContent = 'Fim do jogo! Você fez '+pontos+ ' ponto'+s
-
+    instrucoes.textContent = 'Fim do jogo! Terminou com '+pontos+' ponto'+s
+    
     instrucoes.classList.add('placar')
 
     articleQuestoes.style.display = 'none'
@@ -221,9 +221,9 @@ function fimDoJogo(){
     setTimeout(() => {
         progresso.value = 0
         pontos = 0
-        proximaAlternativa(1)
         instrucoes.classList.remove('placar')
         articleQuestoes.style.display = 'block'
-        instrucoes.textContent = 'Leia a questão e clique na reposta escolhida'
+        proximaQuestao(1)
+        instrucoes.textContent = 'Leia a questão e clique na resposta correta'
     }, 8000)
 }
