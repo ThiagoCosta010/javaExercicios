@@ -18,7 +18,7 @@ let d = document.querySelector('#d')
 let numero = document.querySelector('#numero')
 let total  = document.querySelector('#total')
 
-titulo.textContent = "Maia Quiz"
+titulo.textContent = "Tigur Quiz"
 let totalDeQuestoes = 0
 numero.textContent  = 1
 
@@ -33,7 +33,8 @@ let somAplausos = document.querySelector('#somAplausos')
 const url = 'data.json'
 
 function pegarDados(i){
-  fetch(url).then(response => {
+  fetch(url)
+  .then(response => {
     return response.json()
   }).then(data => {
     if(data.erro){
@@ -47,7 +48,7 @@ function pegarDados(i){
   })
 }
 function atribuirDados(data, i){
-  if(i >= data.questoes.length){
+  if (i >= data.questoes.length){
     i = 1
   }
   nQuestao.textContent = data.questoes[i].numQuestao
@@ -107,9 +108,9 @@ function fimDoJogo(){
   setTimeout(function() {
     pontos = 0
     instrucoes.classList.remove('placar')
-    
+
     questao.style.display = 'block'
     proximaQuestao(1)
-    instrucoes.textContent = 'Leia a questão e clique na reposta correta'
+    instrucoes.textContent = 'Leia a questão e clique na resposta correta'
   }, 7000)
 }
