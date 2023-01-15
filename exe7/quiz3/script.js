@@ -79,7 +79,7 @@ function verificarSeAcertou(nQuestao, resposta){
     somAcerto.play()
   }else{
     somErro.play()
-    console.log('errou!')
+    console.log('errou')
   }
   quantidadeDeQuestoes = parseInt(total.textContent)
   proxima = parseInt(numero.textContent) + 1
@@ -92,7 +92,7 @@ function verificarSeAcertou(nQuestao, resposta){
   }, 50)
 
   atualizarPlacar()
-}
+} 
 function atualizarPlacar(){
   placar.textContent = pontos
 }
