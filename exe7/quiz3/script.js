@@ -48,7 +48,7 @@ function pegarDados(i){
   })
 }
 function atribuirDados(data, i){
-  if (i >= data.questoes.length){
+  if(i >= data.questoes.length){
     i = 1
   }
   nQuestao.textContent = data.questoes[i].numQuestao
@@ -70,7 +70,7 @@ function proximaQuestao(numQuestao){
   pegarDados(proxima)
 }
 function verificarSeAcertou(nQuestao, resposta){
-  let numeroDaQuestao = nQuestao.value
+  let numeroDaQuestao = nQuestao.value  
   let respostaEscolhida = resposta.textContent
   pegarDados(numeroDaQuestao)
   let respostaCorrect = correct.value
@@ -79,7 +79,6 @@ function verificarSeAcertou(nQuestao, resposta){
     somAcerto.play()
   }else{
     somErro.play()
-    console.log('errou')
   }
   quantidadeDeQuestoes = parseInt(total.textContent)
   proxima = parseInt(numero.textContent) + 1
@@ -92,7 +91,7 @@ function verificarSeAcertou(nQuestao, resposta){
   }, 50)
 
   atualizarPlacar()
-} 
+}
 function atualizarPlacar(){
   placar.textContent = pontos
 }
@@ -102,13 +101,11 @@ function fimDoJogo(){
   let s = 's'
   pontos == 0 ? s = '' : s = s
   instrucoes.textContent = 'Fim do jogo! Você finalizou com '+pontos+ ' ponto'+s
-
   instrucoes.classList.add('placar')
   questao.style.display = 'none'
   setTimeout(function() {
-    pontos = 0
     instrucoes.classList.remove('placar')
-
+    pontos = 0
     questao.style.display = 'block'
     proximaQuestao(1)
     instrucoes.textContent = 'Leia a questão e clique na resposta correta'
