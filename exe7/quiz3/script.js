@@ -36,7 +36,8 @@ function pegarDados(i){
   fetch(url)
   .then(response => {
     return response.json()
-  }).then(data => {
+  })
+  .then(data => {
     if(data.erro){
       console.log('erro ao acessar JSON')
       return
@@ -70,11 +71,11 @@ function proximaQuestao(numQuestao){
   pegarDados(proxima)
 }
 function verificarSeAcertou(nQuestao, resposta){
-  let numeroDaQuestao = nQuestao.value  
+  let numeroDaQuestao = nQuestao.value
   let respostaEscolhida = resposta.textContent
   pegarDados(numeroDaQuestao)
   let respostaCorrect = correct.value
-  if(respostaCorrect == respostaEscolhida){
+  if(respostaEscolhida == respostaCorrect){
     pontos += 10
     somAcerto.play()
   }else{
@@ -100,14 +101,14 @@ function fimDoJogo(){
 
   let s = 's'
   pontos == 0 ? s = '' : s = s
-  instrucoes.textContent = 'Fim do jogo! Você finalizou com '+pontos+ ' ponto'+s
+  instrucoes.textContent = 'Você terminou com '+pontos+ ' ponto'+s
   instrucoes.classList.add('placar')
   questao.style.display = 'none'
   setTimeout(function() {
-    instrucoes.classList.remove('placar')
-    pontos = 0
-    questao.style.display = 'block'
     proximaQuestao(1)
+    instrucoes.classList.remove('placar')
+    questao.style.display = 'block'
+    pontos = 0
     instrucoes.textContent = 'Leia a questão e clique na resposta correta'
   }, 7000)
 }
