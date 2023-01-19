@@ -3,9 +3,9 @@
 let banco = []
 
 // armazenar em constante array function que retorna os valores da chave 'todoList'
-const getBanco = () =>  JSON.parse(localStorage.getItem('todoList')) ?? []
+const getBanco = () => JSON.parse(localStorage.getItem('todoList')) ?? []
 // armazenar em constante array function que define um valor da chave 'tarefa' do nosso 'todoList'
-const setBanco = (banco) => localStorage.setItem('todoList', JSON.stringify(banco))
+const setBanco = (banco) => localStorage.setItem('todoList',JSON.stringify(banco))
 
 const criarItem = (tarefa, status, indice) => {
     const item = document.createElement('label')
