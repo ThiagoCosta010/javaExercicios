@@ -45,7 +45,7 @@ const saveClient = () => {
             email: document.getElementById('email').value,
             celular: document.getElementById('celular').value,
             cidade: document.getElementById('cidade').value
-        }
+        }  
         const index = document.getElementById('nome').dataset.index
         if(index == 'new'){
             createClient(client)
@@ -104,7 +104,7 @@ const editDelete = (event) => {
             let avisoDelete = document.querySelector('#avisoDelete')
             avisoDelete.textContent = `Deseja realmente excluir o cliente ${client.nome}`
             openModal2()
-            document.getElementById('apagar').addEventListener('click',() => {
+            document.getElementById('apagar').addEventListener('click', () => {
                 deleteClient(index)
                 updateTable()
                 closeModal2()
