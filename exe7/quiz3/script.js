@@ -58,11 +58,10 @@ function atribuirDados(data, i){
   b.textContent = data.questoes[i].alternativaB
   c.textContent = data.questoes[i].alternativaC
   d.textContent = data.questoes[i].alternativaD
-
   numero.textContent = data.questoes[i].numQuestao
   let certa = document.querySelector('#correct')
   certa.value = data.questoes[i].correta
-}
+} 
 let questaoAtual = 1
 pegarDados(1)
 
@@ -90,18 +89,17 @@ function verificarSeAcertou(nQuestao, resposta){
       proximaQuestao(proxima)
     }
   }, 50)
-
   atualizarPlacar()
 }
+
 function atualizarPlacar(){
   placar.textContent = pontos
 }
 function fimDoJogo(){
   somAplausos.play()
-
   let s = 's'
   pontos == 0 ? s = '' : s = s
-  instrucoes.textContent = 'Você terminou com '+pontos+ ' ponto'+s
+  instrucoes.textContent = `Você terminou com ${pontos} ponto${s}`
   instrucoes.classList.add('placar')
   questao.style.display = 'none'
   setTimeout(function() {
@@ -110,5 +108,5 @@ function fimDoJogo(){
     questao.style.display = 'block'
     pontos = 0
     instrucoes.textContent = 'Leia a questão e clique na resposta correta'
-  }, 7000)
+  }, 7000) 
 }
