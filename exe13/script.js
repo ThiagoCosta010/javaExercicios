@@ -14,7 +14,6 @@ const criarItem = (tarefa, status, indice) => {
         <input type="checkbox" ${status} data-indice=${indice}>
         <div>${tarefa}</div>
         <input type="button" value="X" data-indice=${indice}>
-        
     `
     document.getElementById('todoList').appendChild(item)
 }
