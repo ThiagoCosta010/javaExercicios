@@ -76,6 +76,11 @@ const clearTable = () => {
     const rows = document.querySelectorAll('#tableClient>tbody tr')
     rows.forEach(row => row.parentNode.removeChild(row))
 }
+const updateTable = () => {
+    const dbClient = readClient()
+    clearTable()
+    dbClient.forEach(createRow)
+}
 const fillFields = (client) => {
     document.getElementById('nome').value = client.nome
     document.getElementById('email').value = client.email
