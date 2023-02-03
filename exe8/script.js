@@ -13,28 +13,28 @@ let semana = document.querySelector('#semana')
 let dataSemanal = new Date()
 
 function moveRelogio(){
-    let HorMinSeg = new Date()
-    let hora = HorMinSeg.getHours()
-    let minuto = HorMinSeg.getMinutes()
-    let segundo = HorMinSeg.getSeconds()
+    let horasAtual = new Date()
+    let hora = horasAtual.getHours()
+    let minutos = horasAtual.getMinutes()
+    let segundos = horasAtual.getSeconds()
 
     let strHora = new String(hora)
-    let strMinuto = new String(minuto)
-    let strSegundo = new String(segundo)
+    let strMinuto = new String(minutos)
+    let strSegundo = new String(segundos)
 
-    if(strHora.length == 1) hora = '0' + hora
-    if(strMinuto.length == 1) minuto = '0' + minuto
-    if(strSegundo.length == 1) segundo = '0' + segundo
-
+    if(strHora.length === 1) hora = '0' + hora 
+    if(strMinuto.length === 1) hora = '0' + minutos 
+    if(strSegundo.length === 1) hora = '0' + segundos
+    
     h.textContent = hora
-    m.textContent = minuto
-    s.textContent = segundo
+    m.textContent = minutos
+    s.textContent = segundos
 
     hSmart.textContent = hora
-    mSmart.textContent = minuto
-    sSmart.textContent = segundo
+    mSmart.textContent = minutos
+    sSmart.textContent = segundos
 
-    setInterval(moveRelogio, 1000)
+    setTimeout(moveRelogio, 1000)
 }
 function pegarData(){
     let diaSemana = dataSemanal.getDay()
@@ -45,16 +45,16 @@ function pegarData(){
     let strDia = new String(dia)
     let strMes = new String(mes)
 
-    if(strDia.length == 1) dia = '0' +dia
-    if(strMes.length == 1) mes = '0' +mes
+    if(strDia.length === 1) dia = '0' + dia
+    if(strMes.length === 1) mes = '0' + mes
 
     switch(diaSemana){
         case 0:
             diaSemana = 'DOM'
             break
         case 1:
-            diaSemana = 'SEG'  
-            break  
+            diaSemana = 'SEG'
+            break
         case 2:
             diaSemana = 'TER'
             break
@@ -63,16 +63,16 @@ function pegarData(){
             break
         case 4:
             diaSemana = 'QUI'
-            break        
+            break
         case 5:
             diaSemana = 'SEX'
             break
         case 6:
             diaSemana = 'SAB'
-            break         
+            break
     }
-    let atualSemana = dia+ '/' +mes+ '/' +ano
-    semana.textContent = atualSemana
+    let dataFormatada = dia+ '/' +mes+ '/' +ano
+    semana.textContent = dataFormatada
     data.textContent = diaSemana
 }
 pegarData()
@@ -90,8 +90,8 @@ function getUserPosition(){
 }
 function fetchApi(url){
     let city = document.querySelector('.city')
+    let temp = document.querySelector('#temp')
     let humidity = document.querySelector('#umidad')
-    let temperature = document.querySelector('#temp')
     fetch(url)
     .then((data) => {
         return data.json()
@@ -101,13 +101,12 @@ function fetchApi(url){
 
         city.textContent = data.name
         humidity.textContent = data.main.humidity
-        temperature.textContent = tempInCelsius
+        temp.textContent = tempInCelsius
     })
     .catch((err) => {
         city.textContent = 'Erro ao acessar Open Weather'
-        temperature.textContent = '-'
+        temp.textContent = '-'
     })
 }
 getUserPosition()
-    
 /* url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&APPID=56dcb9ce9559149ad636a6d45e5f633b`*/
