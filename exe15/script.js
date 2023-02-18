@@ -117,6 +117,104 @@ const mudarQuantidade = () => {
 }
 // /aula 05
 
+// aula 06
+const adicionarNoCarrinho = () => {
+    seleciona('.pizzaInfo--addButton').addEventListener('click', () => {
+        let size = seleciona('.pizzaInfo--size.selected').getAttribute('data-key')
+        let price = seleciona('.pizzaInfo--actualPrice').innerHTML.replace('R$&nbsp;', '')
+        let identificador = pizzaJson[modalKey].id+'t'+size
+        let key = cart.findIndex((item) => item.identificador == identificador)
+        if(key > -1){
+            cart[key].qt += quantPizzas
+        }else{
+            let pizza = {
+                identificador,
+                id: pizzaJson[modalKey].id,
+                size,
+                qt: quantPizzas,
+                price: parseFloat(price)
+            }
+            cart.push(pizza)
+        }
+        fecharModal()
+        abrirCarrinho()
+        atualizarCarrinho()
+    })
+}
+const abrirCarrinho = () => {
+    if(cart.length > 0){
+        seleciona('aside').classList.add('show')
+        seleciona('header').style.display = 'flex'
+    }
+    seleciona('.menu-openner').addEventListener('click', () => {
+        if(cart.length > 0){
+            seleciona('aside').classList.add('show')
+            seleciona('aside').style.left = '0'
+        }
+    })
+}
+const fecharCarrinho = () => {
+    seleciona('.menu-closer').addEventListener('click', () => {
+        seleciona('aside').style.left = '100vw'
+        seleciona('header').style.display = 'flex'
+    })
+}
+const atualizarCarrinho = () => {
+    seleciona('.menu-openner span').innerHTML = cart.length
+    if(cart.length > 0){
+        seleciona('aside').classList.add('show')
+        seleciona('.cart').innerHTML = ''
+        let subtotal = 0
+        let desconto = 0
+        let total = 0
+
+        for(let i in cart){
+            let pizzaItem = pizzaJson.find((item) => item.id == cart[i].id)
+            subtotal += cart[i].price * cart[i].qt
+            let cartItem = seleciona('.models .cart--item').cloneNode(true)
+            seleciona('.cart').append(cartItem)
+
+            let pizzaSizeName = cart[i].size
+            let pizzaName = `${pizzaItem.name} (${pizzaSizeName})`
+            cartItem.querySelector('img').src = pizzaItem.img
+            cartItem.querySelector('.cart--item-nome').innerHTML = pizzaName
+            cartItem.querySelector('.cart--item--qt').innerHTML = cart[i].qt
+
+            cartItem.querySelector('.cart--item-qtmais').addEventListener('click', () => {
+                cart[i].qt++
+                atualizarCarrinho()
+            })
+            cartItem.querySelector('.cart--itemqtmenos').addEventListener('click', () => {
+                if(cart[i].qt > 1){
+                    cart[i].qt--
+                }else{
+                    cart.splice(i, 1)
+                }
+                (cart.length < 1) ? seleciona('header').style.display = 'flex' : ''
+
+                atualizarCarrinho()
+            })
+            seleciona('.cart').append(cartItem)
+        }
+        desconto = subtotal * 0
+        total = subtotal - desconto
+
+        seleciona('.subtotal span:last-child').innerHTML = formatoReal(subtotal)
+        seleciona('.desconto span:last-child').innerHTML = formatoReal(desconto)
+        seleciona('.total span:last-child').innerHTML = formatoReal(total)
+    }else{
+        seleciona('aside').classList.remove('show')
+        seleciona('aside').style.left = '100vw'
+    }
+}
+
+const finalizarCompra = () => {
+    seleciona('.cart--finalizar').addEventListener('click', () => {
+        seleciona('aside').classList.remove('show')
+        seleciona('aside').style.left = '100vw'
+        seleciona('header').style.display = 'flex'
+    })
+}
 // MAPEAR pizzaJson para gerar lista de pizzas
 pizzaJson.map((item, index ) => {
     //console.log(item)
@@ -164,3 +262,8 @@ pizzaJson.map((item, index ) => {
 // mudar quantidade com os botoes + e -
 mudarQuantidade()
 // /aula 05
+
+adicionarNoCarrinho()
+atualizarCarrinho()
+fecharCarrinho()
+finalizarCompra()
