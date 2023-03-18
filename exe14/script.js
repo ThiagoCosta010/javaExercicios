@@ -102,7 +102,7 @@ const editDelete = (event) => {
         }else{
             const client = readClient()[index]
             let avisoDelete = document.querySelector('#avisoDelete')
-            avisoDelete.textContent = `Deseja realmente excluir o cliente ${client.nome}`
+            avisoDelete.textContent = `Deseja realmente excluir o cliente ${client.nome} ?`
             openModal2()
             document.getElementById('apagar').addEventListener('click', () => {
                 deleteClient(index)
