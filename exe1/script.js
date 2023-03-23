@@ -14,12 +14,12 @@ btnEnviar.addEventListener('click',(e) => {
     let idade = cxIdade.value
     let peso = cxPeso.value
     let altura = cxAltura.value
-    let imc = (peso / (altura*altura)).toFixed(2)
+    let imc = (peso / (altura * altura)).toFixed(2)
 
     cxImc.value = imc
     let sit = situacaoDoPeso(imc)
     aviso.textContent = sit
-    
+
     let pessoa = {
         nome : nome,
         idade : idade,
@@ -33,7 +33,7 @@ btnEnviar.addEventListener('click',(e) => {
     dados[2].textContent = `${pessoa.peso} kg`
     dados[3].textContent = `${pessoa.altura} m`
     dados[4].textContent = `${pessoa.imc} ${pessoa.sit}`
-    
+
     e.preventDefault()
 })
 function situacaoDoPeso(imc){
